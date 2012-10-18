@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--Created with JFLAP 6.4.--><structure>
+	<type>fa</type>
+	<automaton>
+		<!--The list of states.-->
+		<state id="0" name="Start">
+			<x>182.0</x>
+			<y>147.0</y>
+			<label>0</label>
+			<initial/>
+		</state>
+		<state id="1" name="q1">
+			<x>374.0</x>
+			<y>144.0</y>
+			<label>2</label>
+		</state>
+		<state id="2" name="Done ID">
+			<x>618.0</x>
+			<y>145.0</y>
+			<label>200</label>
+			<final/>
+		</state>
+		<state id="3" name="Error">
+			<x>108.0</x>
+			<y>516.0</y>
+			<label>201</label>
+			<final/>
+		</state>
+		<state id="5" name="&lt;">
+			<x>471.0</x>
+			<y>520.0</y>
+			<label>204</label>
+			<final/>
+		</state>
+		<state id="6" name="&gt;">
+			<x>614.0</x>
+			<y>518.0</y>
+			<label>207</label>
+			<final/>
+		</state>
+		<state id="7" name=":">
+			<x>712.0</x>
+			<y>518.0</y>
+			<label>209</label>
+			<final/>
+		</state>
+		<state id="8" name="q8">
+			<x>405.0</x>
+			<y>365.0</y>
+			<label>4</label>
+		</state>
+		<state id="9" name="q9">
+			<x>345.0</x>
+			<y>411.0</y>
+			<label>9</label>
+		</state>
+		<state id="10" name="q10">
+			<x>493.0</x>
+			<y>355.0</y>
+			<label>5</label>
+		</state>
+		<state id="12" name="Done Digit">
+			<x>365.0</x>
+			<y>520.0</y>
+			<label>203</label>
+			<final/>
+		</state>
+		<state id="16" name="&lt;">
+			<x>551.0</x>
+			<y>342.0</y>
+			<label>6</label>
+		</state>
+		<state id="17" name="&gt;">
+			<x>632.0</x>
+			<y>330.0</y>
+			<label>7</label>
+		</state>
+		<state id="18" name="&lt;= ">
+			<x>523.0</x>
+			<y>519.0</y>
+			<label>205</label>
+			<final/>
+		</state>
+		<state id="20" name="&gt;= ">
+			<x>663.0</x>
+			<y>518.0</y>
+			<label>208</label>
+			<final/>
+		</state>
+		<state id="21" name="&lt;&gt;">
+			<x>568.0</x>
+			<y>518.0</y>
+			<label>206</label>
+			<final/>
+		</state>
+		<state id="22" name="Digit">
+			<x>237.0</x>
+			<y>288.0</y>
+			<label>3</label>
+		</state>
+		<state id="23" name=":">
+			<x>732.0</x>
+			<y>284.0</y>
+			<label>8</label>
+		</state>
+		<state id="25" name=":=">
+			<x>761.0</x>
+			<y>517.0</y>
+			<label>210</label>
+			<final/>
+		</state>
+		<state id="29" name="comment">
+			<x>274.0</x>
+			<y>47.0</y>
+			<label>1</label>
+		</state>
+		<state id="30" name="Single-symbol">
+			<x>173.0</x>
+			<y>515.0</y>
+			<label>202</label>
+			<final/>
+		</state>
+		<!--The list of transitions.-->
+		<transition>
+			<from>0</from>
+			<to>3</to>
+			<read>anything not in the language</read>
+		</transition>
+		<transition>
+			<from>9</from>
+			<to>12</to>
+			<read>[~digit]</read>
+		</transition>
+		<transition>
+			<from>22</from>
+			<to>12</to>
+			<read>[~digit]</read>
+		</transition>
+		<transition>
+			<from>23</from>
+			<to>7</to>
+			<read>[other]</read>
+		</transition>
+		<transition>
+			<from>17</from>
+			<to>20</to>
+			<read>=</read>
+		</transition>
+		<transition>
+			<from>29</from>
+			<to>0</to>
+			<read>}</read>
+		</transition>
+		<transition>
+			<from>1</from>
+			<to>2</to>
+			<read>[~(digit|letter)</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>1</to>
+			<read>letter</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>0</to>
+			<read>space</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>17</to>
+			<read>&gt;</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>29</to>
+			<read>{</read>
+		</transition>
+		<transition>
+			<from>10</from>
+			<to>12</to>
+			<read>~[digit]</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>30</to>
+			<read>single symbol</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>22</to>
+			<read>digit</read>
+		</transition>
+		<transition>
+			<from>9</from>
+			<to>9</to>
+			<read>digits</read>
+		</transition>
+		<transition>
+			<from>10</from>
+			<to>10</to>
+			<controlx>483</controlx>
+			<controly>310</controly>
+			<read>digits</read>
+		</transition>
+		<transition>
+			<from>10</from>
+			<to>8</to>
+			<read>E</read>
+		</transition>
+		<transition>
+			<from>16</from>
+			<to>21</to>
+			<read>&gt;</read>
+		</transition>
+		<transition>
+			<from>22</from>
+			<to>10</to>
+			<read>.</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>23</to>
+			<read>:</read>
+		</transition>
+		<transition>
+			<from>16</from>
+			<to>18</to>
+			<read>=</read>
+		</transition>
+		<transition>
+			<from>1</from>
+			<to>1</to>
+			<controlx>376</controlx>
+			<controly>64</controly>
+			<read>letter</read>
+		</transition>
+		<transition>
+			<from>16</from>
+			<to>5</to>
+			<read>[~= | ~&gt; | other]</read>
+		</transition>
+		<transition>
+			<from>22</from>
+			<to>8</to>
+			<read>E</read>
+		</transition>
+		<transition>
+			<from>17</from>
+			<to>6</to>
+			<read>[other]</read>
+		</transition>
+		<transition>
+			<from>22</from>
+			<to>22</to>
+			<read>digit</read>
+		</transition>
+		<transition>
+			<from>1</from>
+			<to>1</to>
+			<read>digit</read>
+		</transition>
+		<transition>
+			<from>29</from>
+			<to>29</to>
+			<read>anything</read>
+		</transition>
+		<transition>
+			<from>8</from>
+			<to>9</to>
+			<read>+ | -</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>16</to>
+			<read>&lt;</read>
+		</transition>
+		<transition>
+			<from>23</from>
+			<to>25</to>
+			<read>=</read>
+		</transition>
+	</automaton>
+</structure>
