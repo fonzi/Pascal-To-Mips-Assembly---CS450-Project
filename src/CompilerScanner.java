@@ -1,24 +1,59 @@
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.Hashtable;
-
+import java.lang.StringBuffer;
 
 public class CompilerScanner
 {
-	static String ERROR_CONSOLE = "The File does not exist or is incorrect format";
-	static String UNKOWN_TOKEK  = "The token is now part of the language";
+	static final String ERROR_CONSOLE = "The File does not exist or is incorrect format";
+	static final String UNKOWN_TOKEN  = "The token is now part of the language";
+	static final String NOTHING_IN_IO = "The File cannot be read";
 	
-	private String location;
-	private char lexeme; 
-	private Object attribute;
-	private Hashtable keep;
-	private static int [][] transitionTable = 
+	//keeps track of argument for the file 
+	protected File argument;
+	//checks for the next lexeme in type char
+	protected String lexeme;
+	protected SymbolTable symbols;
+	protected StringBuffer arrtibute;
+	//used to keep the tokens of each lexeme
+	protected Hashtable keep;
+	//this are the charts to keep track of the automita
+	protected static final int [][] transitionTable = 
 		{
-			//state 0
+			/*
+			 * State 0 - start 
+			 * State 1 - Comments
+			 * State 2 - digit or letters only
+			 * State 3 - only digits can come here 
+			 * State 4 - only E can come into this state
+			 * State 5 - only a period followed by any number of digits
+			 * State 6 - only < can come into this state 
+			 * State 7 - only > can come into this state
+			 * State 8 - only : can come into this state
+			 * State 9 - only + or - followed by digits can be in the steate
+			 * State201- is the error state
+			 * State202- is the single symbol acceptance state
+			 * State203- is the done digit acceptance state
+			 * State204- is the < acceptance state
+			 * State205- is the <= acceptance state
+			 * State206- is the <> acceptance state
+			 * State207- is the > acceptance state
+			 * State208- is the >= acceptance state
+			 * State209- is the : acceptance state
+			 * State210- is the := acceptance state 
+			 * 
+			 */
+		
+			//state 0 
+			//anything can go from here exepct things that are not in the language
+			//state 201 is the error state
+			
 			{
 			    // 0,   1,   2,   3,   4,   5,   6,   7,   8,   9,  10,  11,  12,  13,  14,  15, 
-				 201, 201, 201, 201, 201, 201, 201, 201, 201,   0, 201, 201, 201, 201, 201, 201,
+				 201, 201, 201, 201, 201, 201, 201, 201, 201,   0, 201, 201, 201,   0, 201, 201,
 				 201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201,
 				   0, 201, 201, 201, 201, 201, 201, 201, 202, 202, 202, 202, 201, 202, 202, 202,
 				 203, 203, 203, 203, 203, 203, 203, 203, 203, 203, 201, 201, 204, 201, 207, 201,
@@ -136,8 +171,65 @@ public class CompilerScanner
 				 203, 203, 203, 203, 203, 203, 203, 203, 203, 203, 203, 203, 203, 203, 203, 203
 			}
 		};
-	public CompilerScanner(String fileLocation)
+	//constructor for the scanner
+	public CompilerScanner(File fileLocation, SymbolTable table)
 	{
-		this.location = fileLocation;
+		this.argument= fileLocation;
+		this.symbols = table;
 	}
+	//Returns the lexeme
+	public String getLexeme() 
+	{
+		return lexeme;
+	}
+	//sets the lexeme to this.lexeme
+	public void setLexeme(String lexeme) 
+	{
+		this.lexeme = lexeme;
+	}
+	//returns symbolsTable
+	public SymbolTable getSymbols() 
+	{
+		return symbols;
+	}
+	//
+	public void setSymbols(SymbolTable symbols) 
+	{
+		this.symbols = symbols;
+	}
+	public String nextToken()
+	{
+		int nextCharacter = 0;
+		FileReader readFile; 
+		try
+		{
+			//creates a new file reader
+			readFile = new FileReader(argument);
+			//goes to the next char
+			while(nextCharacter != -1)
+			{
+				nextCharacter = readFile.read();
+				switch(nextCharacter)
+				{
+				case 0:
+					transitionTable[0][0]  ;break;
+					
+				}
+			}
+		}
+		catch(FileNotFoundException e)
+		{
+			System.out.println(ERROR_CONSOLE);
+			System.exit(0);
+		}
+		catch(IOException e)
+		{
+			System.out.println(NOTHING_IN_IO);
+			System.exit(0);
+		}
+		return lexeme;
+		
+	}
+	
+	
 }
