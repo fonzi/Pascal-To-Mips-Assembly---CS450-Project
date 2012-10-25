@@ -4,6 +4,7 @@
  * @author Alfonso Vazquez
  *
  */
+
 public enum Token 
 {
 	
