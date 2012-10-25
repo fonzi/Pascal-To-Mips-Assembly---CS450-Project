@@ -1,10 +1,18 @@
 import java.util.Hashtable;
+/**
+ * @author Fonzi
+ *
+ */
 public class SymbolTable 
 {
 	protected final Hashtable<String,Token> symbolTable= new Hashtable<String, Token>();
 	/*
 	 * Transition Table used to call in the lexems and saved them for the parser
 	 * 
+	 */
+	/**
+	 * no arguments are taken
+	 * hashTable format to put language keywords and enum decelerations.
 	 */
 	public SymbolTable()
 	{
