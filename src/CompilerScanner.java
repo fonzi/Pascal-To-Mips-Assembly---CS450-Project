@@ -11,12 +11,11 @@ import java.util.Hashtable;
 /**
  * @author Alfonso Vazquez
  * Scanner for Compiler
- * Contains 6 methods
  * transitionTable is of type 2d array or matrix contains all the state transitions from the automita
  * compilerScanner is the constuctor of the class containing file and table
  * getLexeme is the getter for the scanner to call the lexeme
  * nextToken keeps track of the tokens and states the scanner is transitioning through
- * toString used to return 
+ * pushBack is used to read in and push back to the input stream
  * main is used to test the constructor along with nextToken.
  *
  */
@@ -333,7 +332,7 @@ public class CompilerScanner
                     //Automita implemented ----------------------//
                     //-------------------------------------------//
                     case START_STATE:
-                      //  lexeme.append("");
+                        lexeme.append("");
                         break;
 			
                     case COMMENT: 
@@ -610,8 +609,12 @@ public class CompilerScanner
             CompilerScanner scan = new CompilerScanner(file,table);
             while (i != 1)
             {
-		i = scan.nextToken();			
-                System.out.println("LEXEME: "+scan.getLexeme() +" TOKEN: ["+ scan.getToken()+ "]");
+		i = scan.nextToken();		
+                if(scan.lexeme.length() != 0)
+                {
+                    System.out.println("LEXEME: "+scan.getLexeme() +" TOKEN: ["+ scan.getToken()+ "]");
+                }
+                
             }//end while
 	}//end main
 }//end class
