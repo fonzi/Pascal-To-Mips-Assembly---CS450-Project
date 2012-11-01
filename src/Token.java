@@ -1,5 +1,6 @@
 /**
- * enum called token to list all the lexical units from the small pascal language
+ * enum called token to list all the lexical 
+ * units from the small pascal language
  * 
  * @author Alfonso Vazquez
  *
