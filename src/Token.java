@@ -4,6 +4,8 @@
  * @author Alfonso Vazquez
  *
  */
+package CompilerScanner;
+
 public enum Token 
 {
 	
@@ -21,6 +23,7 @@ public enum Token
 	OF,
 	FUNCTION,
 	PROCEDURE,
+	PROGRAM,
 	OR,
 	NOT,
 	MOD,
@@ -28,11 +31,12 @@ public enum Token
 	REAL,
 	INTEGER,
 	ID,
+	NUMBER,
 	
 	//Other units | Symbols.
 	SEMI_COLON,
 	PERIOD,
-	PERIOD_EQUALS,
+	COLON_EQUALS,
 	LEFT_SQUARE_BRACKET,
 	RIGHT_SQUARE_BRACKET,
 	LEFT_PARENTHESIS,
