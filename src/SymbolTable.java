@@ -8,7 +8,8 @@ import java.util.Hashtable;
 
 public class SymbolTable extends Hashtable
 {
-	protected final Hashtable<String,Token> symbolTable= new Hashtable<String, Token>();
+	protected final Hashtable<String,Token> symbolTable= 
+                new Hashtable<String, Token>();
 	/**
 	 * no arguments are taken
 	 * hashTable format to put language keywords and enum decelerations.
