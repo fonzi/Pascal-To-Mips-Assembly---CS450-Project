@@ -4,9 +4,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.io.LineNumberReader;
 import java.io.PushbackReader;
-import java.lang.StringBuilder;
 import java.util.Hashtable;
+
 
 /**
  * @author Alfonso Vazquez
@@ -29,11 +30,8 @@ public class CompilerScanner
      */
     static final String ERROR_CONSOLE = "The File does not exist or is "
                                          + "incorrect format";
-    static final String UNKOWN_TOKEN  = "The token is now part of the language";
+    static final String UNKOWN_TOKEN  = "The token is not part of the language";
     static final String NOTHING_IN_IO = "The File cannot be read";
-    static final String ONLY_ONE_ARGUMENT_NEEDED = "You only need one file "
-            + "location,or, You have more than the file location, "
-            + "file location is the only argument needed";
 	
     /**
      * transitionTable, type 2d array of "matrix" is to keep the 
@@ -262,6 +260,7 @@ public class CompilerScanner
                     203, 203, 203, 203, 203, 203, 203, 203
                 }
 	};
+
 	//This constants are declared to make the case switch more readable
 	private static final int START_STATE = 0;
 	private static final int COMMENT = 1;
@@ -291,9 +290,8 @@ public class CompilerScanner
 	//2 is error	
 	public static final int IS_A_LEXEME = 0;
 	public static final int IS_NOT_A_LEXEME = 1;
-	public static final int IS_AN_ERROR = 2;	
-		
-	
+	public static final int IS_AN_ERROR = 2;
+       
         //these are used to keep the next character pointer
         //file is used to locate the file from constructor
         //lexeme is used to build and object from tokens
@@ -305,7 +303,8 @@ public class CompilerScanner
 	protected PushbackReader pushBack;
 	protected Token tokens;
 	protected Object attribute;
-	
+        protected LineNumberReader lineNumRead;
+	protected int lineNum;
 	/**
 	 * This is the scanner construstor; locates the file 
          * argument of where the file is 
@@ -319,15 +318,23 @@ public class CompilerScanner
 	{
             this.argument= fileLocation;
             this.symbols = table;
+            this.lineNum = 0;
             try
             {
+                FileReader fileToRead = new FileReader(fileLocation);
                 //creates a new pushBackReader based of type 
                 //FileReader based of type File
-                pushBack= new PushbackReader(new FileReader (fileLocation));
+                pushBack= new PushbackReader(new FileReader(fileLocation));
+                lineNumRead = new LineNumberReader(fileToRead);
+                while(lineNumRead.readLine() != null)
+                {
+                    lineNum ++;
+                }//end while
+                   
+                lineNumRead.close();
             }
             catch(FileNotFoundException e)
             {
-                e.printStackTrace();
 		System.err.println(ERROR_CONSOLE);
 		System.exit( 1);
             }
@@ -353,6 +360,10 @@ public class CompilerScanner
         {
             return this.tokens;
         }
+        public int getLineCounter()
+        {
+            return this.lineNum;
+        }
 	/**
 	 * nextToken is of type int to reuturn is lexeme is not lexeme or error
 	 * case switch statement represents the states of 
@@ -370,12 +381,13 @@ public class CompilerScanner
             int nextCharacter = 0;
             int currentState = 0;
             int nextState = 0;
+           
             //lexeme is initialized here
             lexeme = new StringBuilder();
             do
             {
-            //goes to the next char
-            currentState = nextState;
+                //goes to the next char
+                currentState = nextState;
         	try	
 		{
                     nextCharacter = pushBack.read();
@@ -456,135 +468,139 @@ public class CompilerScanner
                         }
                         if(lexeme.toString().equals("if"))
                         {
-                            tokens = tokens.IF;   
+                            tokens = Token.IF;   
                         }
                         else if(lexeme.toString().equals("then"))
                         {
-                            tokens = tokens.THEN;   
+                            tokens = Token.THEN;   
                         }
                         else if(lexeme.toString().equals("else"))
                         {
-                            tokens = tokens.ELSE;   
+                            tokens = Token.ELSE;   
                         }
                         else if(lexeme.toString().equals("while"))
                         {
-                            tokens = tokens.WHILE;   
+                            tokens = Token.WHILE;   
                         }
                         else if(lexeme.toString().equals("do"))
                         {
-                            tokens = tokens.DO;   
+                            tokens = Token.DO;   
                         }
                         else if(lexeme.toString().equals("var"))
                         {
-                            tokens = tokens.VAR;   
+                            tokens = Token.VAR;   
                         }
                         else if(lexeme.toString().equals("begin"))
                         {
-                            tokens = tokens.BEGIN;
+                            tokens = Token.BEGIN;
                         }    
                         else if(lexeme.toString().equals("end"))
                         {
-                            tokens = tokens.END;   
+                            tokens = Token.END;   
                         }
                         else if(lexeme.toString().equals("array"))
                         {
-                            tokens = tokens.ARRAY;   
+                            tokens = Token.ARRAY;   
                         }
                         else if(lexeme.toString().equals("of"))
                         {
-                            tokens = tokens.OF;   
+                            tokens = Token.OF;   
                         }
                         else if(lexeme.toString().equals("functions"))
                         {
-                            tokens = tokens.FUNCTION;   
+                            tokens = Token.FUNCTION;   
                         }
                         else if(lexeme.toString().equals("procedure"))
                         {
-                            tokens = tokens.PROCEDURE;   
+                            tokens = Token.PROCEDURE;   
                         }
                         else if(lexeme.toString().equals("program"))
                         {
-                            tokens = tokens.PROGRAM;   
+                            tokens = Token.PROGRAM;   
                         }
                         else if(lexeme.toString().equals("or"))
                         {
-                            tokens = tokens.OR;   
+                            tokens = Token.OR;   
                         }
                         else if(lexeme.toString().equals("not"))
                         {
-                            tokens = tokens.NOT;   
+                            tokens = Token.NOT;   
                         }
                         else if(lexeme.toString().equals("mod"))
                         {
-                            tokens = tokens.MOD;   
+                            tokens = Token.MOD;   
                         }
                         else if(lexeme.toString().equals("and"))
                         {
-                            tokens = tokens.AND;   
+                            tokens = Token.AND;   
                         }
                         else if(lexeme.toString().equals("real"))
                         {
-                            tokens = tokens.REAL;   
+                            tokens = Token.REAL;   
                         }
                         else if(lexeme.toString().equals("integer"))
                         {
-                            tokens = tokens.INTEGER;   
+                            tokens = Token.INTEGER;   
                         }
-                        else tokens = tokens.ID;
+                        else tokens = Token.ID;
                         return IS_A_LEXEME;
 				                        
                     case ERROR:
                         //lexeme.append(Character.toChars(nextCharacter));
                         this.getLexeme();
+                        //sets the line num read to null
+                        //so the count will end before the end of file
+                        lineNumRead = null;
+                        System.err.println(UNKOWN_TOKEN + " " + nextCharacter);System.exit(0);
                         return IS_AN_ERROR;
-
+                  
                         //single symbol uses if and else if statements to look
                         //for single symbols
                     case SINGLE_SYMBOL:
                         lexeme.append(Character.toChars(nextCharacter));
                         if(lexeme.toString().equals(";"))
                         {
-                             tokens = tokens.SEMI_COLON;
+                             tokens = Token.SEMI_COLON;
                         }
                         else if(lexeme.toString().equals("."))
                         {
-                            tokens = tokens.PERIOD;
+                            tokens = Token.PERIOD;
                         }
                         else if(lexeme.toString().equals("["))
                         {
-                            tokens = tokens.LEFT_SQUARE_BRACKET;
+                            tokens = Token.LEFT_SQUARE_BRACKET;
                         }
                         else if(lexeme.toString().equals("]"))
                         {
-                            tokens = tokens.RIGHT_SQUARE_BRACKET;
+                            tokens = Token.RIGHT_SQUARE_BRACKET;
                         }
                         else if(lexeme.toString().equals("("))
                         {
-                            tokens = tokens.LEFT_PARENTHESIS;
+                            tokens = Token.LEFT_PARENTHESIS;
                         }
                         else if(lexeme.toString().equals(")"))
                         {
-                            tokens = tokens.RIGHT_PARENTHESIS;
+                            tokens = Token.RIGHT_PARENTHESIS;
                         }
                         else if(lexeme.toString().equals("+"))
                         {
-                            tokens = tokens.PLUS;
+                            tokens = Token.PLUS;
                         }
                         else if(lexeme.toString().equals("-"))
                         {
-                            tokens = tokens.MINUS;
+                            tokens = Token.MINUS;
                         }
                         else if(lexeme.toString().equals("*"))
                         {
-                            tokens = tokens.MULTIPLY;
+                            tokens = Token.MULTIPLY;
                         }
                         else if(lexeme.toString().equals("/"))
                         {
-                            tokens = tokens.DIVIDE;
+                            tokens = Token.DIVIDE;
                         }
                         else if(lexeme.toString().equals("="))
                         {
-                            tokens = tokens.EQUAL;
+                            tokens = Token.EQUAL;
                         }
                         return IS_A_LEXEME;
 				
@@ -598,7 +614,7 @@ public class CompilerScanner
                             System.err.println(NOTHING_IN_IO);
                         }
                         
-                        tokens = tokens.NUMBER;
+                        tokens = Token.NUMBER;
                         return IS_A_LEXEME;	
                    
                     case DONE_LESS_THAN: 
@@ -610,17 +626,17 @@ public class CompilerScanner
                         {
                             System.err.println(NOTHING_IN_IO);
                         }
-                        tokens = tokens.LESS_THAN;
+                        tokens = Token.LESS_THAN;
                         break;
 			
                     case DONE_LESS_THAN_EQUAL: 
                         lexeme.append(Character.toChars(nextCharacter));
-                        tokens = tokens.LESS_THAN_EQUAL;
+                        tokens = Token.LESS_THAN_EQUAL;
                         return IS_A_LEXEME; 
 			   
                     case DONE_NOT_EQUAL:
                         lexeme.append(Character.toChars(nextCharacter));
-                        tokens = tokens.NOT_EQUAL;
+                        tokens = Token.NOT_EQUAL;
                         return IS_A_LEXEME;	
                      
                     case DONE_GREATER_THAN:	
@@ -632,12 +648,12 @@ public class CompilerScanner
                         {
                             System.err.println(NOTHING_IN_IO);
                         }
-                        tokens = tokens.GREATER_THAN;
+                        tokens = Token.GREATER_THAN;
                         return IS_A_LEXEME;
                         
                     case DONE_GREATER_THAN_EQUAL:
                         lexeme.append(Character.toChars(nextCharacter));
-                        tokens = tokens.GREATER_THAN_EQUAL;
+                        tokens = Token.GREATER_THAN_EQUAL;
                         return IS_A_LEXEME;
 				
                     case DONE_COLON: 
@@ -649,12 +665,12 @@ public class CompilerScanner
                         {
                             System.err.println(NOTHING_IN_IO);
                         }
-                        tokens = tokens.COLON;
+                        tokens = Token.COLON;
                         return IS_A_LEXEME;
 				
                     case DONE_COLON_EQUAL:
                         lexeme.append(Character.toChars(nextCharacter));
-                        tokens = tokens.COLON_EQUALS;
+                        tokens = Token.COLON_EQUALS;
                         return IS_A_LEXEME;		
 				
 			}//end switch
@@ -663,38 +679,11 @@ public class CompilerScanner
 		//says that their is no lexeme
 		return IS_NOT_A_LEXEME;		
 	}
-
-	/**
-	 * Main used to test the constructor and transitionTable 
-         * along with Token and SymbolTable
-	 * file based on args[0]
-	 * @param args
-	 */
-	public static void main (String [] args)
-	{
-            String fileLocation = args[0];
-            if(fileLocation == null || args.length > 1)
-            {
-                System.err.println(ONLY_ONE_ARGUMENT_NEEDED);
-            }
-            int i = 0;
-            File file = new File(args[0]);
-            SymbolTable table = new SymbolTable();
-            CompilerScanner scan = new CompilerScanner(file,table);
-            while (i != 1)
-            {
-                i = scan.nextToken();
-                if(scan.lexeme.length() != 0)
-                {
-                    System.out.println("LEXEME: "+scan.getLexeme() 
-                            +" TOKEN: ["+ scan.getToken()+ "]");
-                }
-                else if(i == IS_AN_ERROR || i > 127)
-                {
-                    System.out.println("THIS TOKEN IS NOT AVAILABE" 
-                            + scan.getLexeme());
-                }                
-                
-            }//end while
-	}//end main
+	
+        
+        /*
+         * Line Counter is of type int to return the number of lines of the file
+         * Uses the LineNumberReader class from java
+         * @return int with the line count
+         */
 }//end class
