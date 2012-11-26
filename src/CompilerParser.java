@@ -1,13 +1,26 @@
 package CompilerScanner;
 
+import java.io.File;
+import java.util.Hashtable;
+
 public class CompilerParser
 {
 	private CompilerScanner scanner;
 	private Token currentToken;
 
+        public CompilerParser(String filename)
+        {
+            File input = new File(filename);
+            Hashtable symbols = new SymbolTable();
+            scanner = new CompilerScanner(input, symbols);
+            
+            scanner.nextToken();
+            currentToken = scanner.getToken();
+        }
+        
 	public void program()
 	{
-
+            System.out.println("program");
             match(currentToken.PROGRAM);//match program
             match(currentToken.ID);//match id
             match(currentToken.SEMI_COLON);//match ;
@@ -19,6 +32,7 @@ public class CompilerParser
 	}
         public void identifier_list()
 	{
+            System.out.println("identifier_list");
             if(currentToken == Token.ID)
             {
                 match(currentToken.ID);//match ID
@@ -28,10 +42,10 @@ public class CompilerParser
                 match(currentToken.ID);//match ID
                 identifier_list();
             }
-
 	}
 	public void declarations()
 	{
+            System.out.println("declerations");
             match(currentToken.VAR);//match var
             identifier_list();
             match(currentToken.COLON);//match :
@@ -41,6 +55,7 @@ public class CompilerParser
 	}
         public void type()
         {
+            System.out.println("type");
             if(currentToken == Token.ARRAY)
             {
                 match(currentToken.ARRAY);//match array
@@ -59,6 +74,7 @@ public class CompilerParser
         }
         public void standard_type()
         {
+            System.out.println("standard_type");
             if(currentToken == Token.NUMBER)
             {
                 match(currentToken.NUMBER);//match num
@@ -70,6 +86,7 @@ public class CompilerParser
         }
 	public void subprogram_declarations()
 	{
+            System.out.println("subprogram_declerations");
             if(currentToken != null)
             {
                 subprogram_declaration();
@@ -80,6 +97,7 @@ public class CompilerParser
 	}
         public void subprogram_declaration()
         {
+            System.out.println("subprogram_declarations");
             subprogram_head();
             declarations();
             subprogram_declarations();
@@ -87,10 +105,11 @@ public class CompilerParser
         }
 	public void compound_declarations()
 	{
-
+            System.out.println("compound_declarations");
 	}
         public void subprogram_head()
         {
+            System.out.println("subprogram_head");
             if(currentToken == Token.FUNCTION)
             {
                 match(currentToken.FUNCTION);//match functions
@@ -108,6 +127,7 @@ public class CompilerParser
         }
         public void arguments()
         {
+            System.out.println("arguments");
             if(currentToken == Token.LEFT_PARENTHESIS)
             {
                 match(currentToken.LEFT_PARENTHESIS);//match (
@@ -119,16 +139,18 @@ public class CompilerParser
         }
         public void parameter_list()
         {
-            
+            System.out.println("parameter_list");
         }
         public void compound_statement()
         {
+            System.out.println("compound_statement");
             match(currentToken.BEGIN);
             optional_statements();
             match(currentToken.END);
         }
         public void optional_statements()
         {
+            System.out.println("optional_statements");
             if(currentToken != null)
             {
                 statement_list();
@@ -138,28 +160,30 @@ public class CompilerParser
         }
         public void statement_list()
         {
-            
+            System.out.println("statement_list");
         }
         public void statement()
         {
-
+            System.out.println("statement");
         }
         public void variable()
         {
-               if(currentToken == Token.ID)
-               {
-                   match(currentToken.ID);//match id
-               }
-               else
-               {
-                   match(currentToken.ID);
-                   match(currentToken.LEFT_SQUARE_BRACKET);//match [
-                   expression();
-                   match(currentToken.RIGHT_SQUARE_BRACKET);//match ]
-               }
+            System.out.println("variable");
+            if(currentToken == Token.ID)
+            {
+                match(currentToken.ID);//match id
+            }
+            else
+            {
+                match(currentToken.ID);
+                match(currentToken.LEFT_SQUARE_BRACKET);//match [
+                expression();
+                match(currentToken.RIGHT_SQUARE_BRACKET);//match ]
+            }
         }
         public void procedure_statement()
         {
+            System.out.println("procedure_statement");
             if(currentToken == Token.ID)
             {
                 match(currentToken.ID);//match id 
@@ -175,18 +199,19 @@ public class CompilerParser
         }
         public void expression_list()
         {
-
+            System.out.println("expression_list");
         }
         public void expression()
         {
-
+            System.out.println("expression");
         }
         public void simple_expressions()
         {
-
+            System.out.println("simple_expressions");
         }
         public void simple_part()
         {
+            System.out.println("simple_part");
             if(currentToken == Token.PLUS  || currentToken == Token.MINUS 
                     || currentToken == Token.OR)
             {
@@ -200,12 +225,14 @@ public class CompilerParser
         }
         public void term()
         {
+            System.out.println("term");
             factor();
             term_part();
                     
         }
         public void term_part()
         {
+            System.out.println("term_part");
             if(currentToken == Token.MULTIPLY || currentToken == Token.DIVIDE 
                     || currentToken == Token.MOD || currentToken == Token.AND)
             {
@@ -219,10 +246,11 @@ public class CompilerParser
         }
         public void factor()
         {
-
+            System.out.println("factor");
         }
         public void sign()
         {
+            System.out.println("sign");
             if(currentToken == Token.PLUS)
             {
                 match(currentToken.PLUS);
@@ -234,6 +262,7 @@ public class CompilerParser
         }
 	public void match(Token expectedToken)
 	{
+            System.out.println("match");
             if(currentToken == expectedToken)
             {
                 int scan = scanner.nextToken();
@@ -255,7 +284,8 @@ public class CompilerParser
 	}//end match
 	public void error()
 	{
-		System.err.println("Parse error at line : " + scanner.getLineCounter());
-		System.exit(1);
+            System.out.println("error");    
+            System.err.println("Parse error at line : " + scanner.getLineCounter());
+            System.exit(1);
 	}
 }
