@@ -146,11 +146,32 @@ public class CompilerParser
         }
         public void variable()
         {
-
+               if(currentToken == Token.ID)
+               {
+                   match(currentToken.ID);//match id
+               }
+               else
+               {
+                   match(currentToken.ID);
+                   match(currentToken.LEFT_SQUARE_BRACKET);//match [
+                   expression();
+                   match(currentToken.RIGHT_SQUARE_BRACKET);//match ]
+               }
         }
         public void procedure_statement()
         {
-
+            if(currentToken == Token.ID)
+            {
+                match(currentToken.ID);//match id 
+            }
+            else
+            {
+                match(currentToken.ID);
+                match(currentToken.LEFT_PARENTHESIS);//match (
+                expression_list();
+                match(currentToken.RIGHT_PARENTHESIS);//match )
+            }
+            
         }
         public void expression_list()
         {
@@ -166,21 +187,51 @@ public class CompilerParser
         }
         public void simple_part()
         {
-
+            if(currentToken == Token.PLUS  || currentToken == Token.MINUS 
+                    || currentToken == Token.OR)
+            {
+                term();
+                simple_part();
+            }
+            else 
+            {
+                currentToken = null;
+            }
         }
         public void term()
         {
-
+            factor();
+            term_part();
+                    
         }
         public void term_part()
         {
-
+            if(currentToken == Token.MULTIPLY || currentToken == Token.DIVIDE 
+                    || currentToken == Token.MOD || currentToken == Token.AND)
+            {
+                factor();
+                term_part();
+            }
+            else
+            {
+                currentToken = null;
+            }
         }
         public void factor()
         {
 
         }
-
+        public void sign()
+        {
+            if(currentToken == Token.PLUS)
+            {
+                match(currentToken.PLUS);
+            }
+            else if(currentToken == Token.MINUS)
+            {
+                match(currentToken.MINUS);
+            }
+        }
 	public void match(Token expectedToken)
 	{
             if(currentToken == expectedToken)
