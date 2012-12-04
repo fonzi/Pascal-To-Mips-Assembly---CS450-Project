@@ -53,5 +53,6 @@ public enum Token
 	GREATER_THAN_EQUAL,
 	GREATER_THAN,
 	COLON,
+	COMMA,
 	
 }
