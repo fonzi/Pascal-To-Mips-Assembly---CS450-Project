@@ -55,6 +55,7 @@ public class SymbolTable extends Hashtable
 		symbolTable.put(">", Token.GREATER_THAN);
 		symbolTable.put(">=", Token.GREATER_THAN_EQUAL);
 		symbolTable.put(":", Token.COLON);
+		symbolTable.put(",", Token.COMMA);
 		
 	}
 }
