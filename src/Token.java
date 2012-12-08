@@ -33,7 +33,7 @@ public enum Token
 	INTEGER,
 	ID,
 	NUMBER,
-	
+		
 	//Other units | Symbols.
 	SEMI_COLON,
 	PERIOD,

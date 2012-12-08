@@ -39,7 +39,7 @@ public class SymbolTable extends Hashtable
 		
 		symbolTable.put(";", Token.SEMI_COLON);
 		symbolTable.put(".", Token.PERIOD);
-		symbolTable.put(":=", Token.COLON_EQUALS);
+		symbolTable.put(":=", Token.COLON_EQUALS);//assingop on grammar 
 		symbolTable.put("[", Token.LEFT_SQUARE_BRACKET);
 		symbolTable.put("]", Token.RIGHT_SQUARE_BRACKET);
 		symbolTable.put("(", Token.LEFT_PARENTHESIS);

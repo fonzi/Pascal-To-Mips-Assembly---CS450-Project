@@ -70,195 +70,195 @@ public class CompilerScanner
                 //not in the language
 		//state 201 is the error state	
 		{
-                     201, 201, 201, 201, 201, 201, 201, 201,//0-7
-                     201,   0,   0, 201, 201,   0, 201, 201,//8-15	
-                     201, 201, 201, 201, 201, 201, 201, 201,//16-23
-                     201, 201, 201, 201, 201, 201, 201, 201,//24-31
-                       0, 201, 201, 201, 201, 201, 201, 201,//32-39 
-                     202, 202, 202, 202, 201, 202, 202, 202,//40-47
-                       3,   3,   3,   3,   3,   3,   3,   3,//48-55   
-                       3,   3,   8, 202,   6, 202,   7, 201,//56-63
-                     201,   2,   2,   2,   2,   2,   2,   2,//57-71   
-                       2,   2,   2,   2,   2,   2,   2,   2,//71-79
-                       2,   2,   2,   2,   2,   2,   2,   2,//80-88   
-                       2,   2, 202, 202, 201, 202, 201, 201,//89-97
-                     201,   2,   2,   2,   2,   2,   2,   2,//98-106   
-                       2,   2,   2,   2,   2,   2,   2,   2,//107-115
-                       2,   2,   2,   2,   2,   2,   2,   2,//116-123   
-                       2,   2,   2,   1, 201, 201, 201, 201 //124-127
-                 },       	
-                 //State 1
-                 {
-                    
-                    1,   1,   1,   1,   1,   1,   1,   1,   
-                    1,   1,   1,   1,   1,   1,   1,   1,
-                    1,   1,   1,   1,   1,   1,   1,   1,   
-                    1,   1,   1,   1,   1,   1,   1,   1,
-                    1,   1,   1,   1,   1,   1,   1,   1,   
-                    1,   1,   1,   1,   1,   1,   1,   1,
-                    1,   1,   1,   1,   1,   1,   1,   1,   
-                    1,   1,   1,   1,   1,   1,   1,   1,
-                    1,   1,   1,   1,   1,   1,   1,   1,   
-                    1,   1,   1,   1,   1,   1,   1,   1,
-                    1,   1,   1,   1,   1,   1,   1,   1,   
-                    1,   1,   1,   1,   1,   1,   1,   1,
-                    1,   1,   1,   1,   1,   1,   1,   1,   
-                    1,   1,   1,   1,   1,   1,   1,   1,
-                    1,   1,   1,   1,   1,   1,   1,   1,   
-                    1,   1,   1,   1,   1,   0,   1,   1
+			 201, 201, 201, 201, 201, 201, 201, 201,//0-7
+			 201,   0,   0, 201, 201,   0, 201, 201,//8-15	
+			 201, 201, 201, 201, 201, 201, 201, 201,//16-23
+			 201, 201, 201, 201, 201, 201, 201, 201,//24-31
+			   0, 201, 201, 201, 201, 201, 201, 201,//32-39 
+			 202, 202, 202, 202, 201, 202, 202, 202,//40-47
+			   3,   3,   3,   3,   3,   3,   3,   3,//48-55   
+			   3,   3,   8, 202,   6, 202,   7, 201,//56-63
+			 201,   2,   2,   2,   2,   2,   2,   2,//57-71   
+			   2,   2,   2,   2,   2,   2,   2,   2,//71-79
+			   2,   2,   2,   2,   2,   2,   2,   2,//80-88   
+			   2,   2, 202, 202, 201, 202, 201, 201,//89-97
+			 201,   2,   2,   2,   2,   2,   2,   2,//98-106   
+			   2,   2,   2,   2,   2,   2,   2,   2,//107-115
+			   2,   2,   2,   2,   2,   2,   2,   2,//116-123   
+			   2,   2,   2,   1, 201, 201, 201, 201 //124-127
+		 },       	
+		 //State 1
+		 {
+			
+			1,   1,   1,   1,   1,   1,   1,   1,   
+			1,   1,   1,   1,   1,   1,   1,   1,
+			1,   1,   1,   1,   1,   1,   1,   1,   
+			1,   1,   1,   1,   1,   1,   1,   1,
+			1,   1,   1,   1,   1,   1,   1,   1,   
+			1,   1,   1,   1,   1,   1,   1,   1,
+			1,   1,   1,   1,   1,   1,   1,   1,   
+			1,   1,   1,   1,   1,   1,   1,   1,
+			1,   1,   1,   1,   1,   1,   1,   1,   
+			1,   1,   1,   1,   1,   1,   1,   1,
+			1,   1,   1,   1,   1,   1,   1,   1,   
+			1,   1,   1,   1,   1,   1,   1,   1,
+			1,   1,   1,   1,   1,   1,   1,   1,   
+			1,   1,   1,   1,   1,   1,   1,   1,
+			1,   1,   1,   1,   1,   1,   1,   1,   
+			1,   1,   1,   1,   1,   0,   1,   1
 		},        
 		//State 2
 		{
-                    200, 200, 200, 200, 200, 200, 200, 200, 
-                    200, 200, 200, 200, 200, 200, 200, 200,
-                    200, 200, 200, 200, 200, 200, 200, 200, 
-                    200, 200, 200, 200, 200, 200, 200, 200,
-                    200, 200, 200, 200, 200, 200, 200, 200, 
-                    200, 200, 200, 200, 200, 200, 200, 200,
-                      2,   2,   2,   2,   2,   2,   2,   2,   
-                      2,   2, 200, 200, 200, 200, 200, 200,
-                    200,   2,   2,   2,   2,   2,   2,   2,   
-                      2,   2,   2,   2,   2,   2,   2,   2,
-                      2,   2,   2,   2,   2,   2,   2,   2,  
-                      2,   2,   2, 200, 200, 200, 200, 200,
-                    200,   2,   2,   2,   2,   2,   2,   2,  
-                      2,   2,   2,   2,   2,    2,  2,   2,
-                      2,   2,   2,   2,   2,   2,   2,   2,   
-                      2,   2,   2, 200, 200, 200, 200, 200
+			200, 200, 200, 200, 200, 200, 200, 200, 
+			200, 200, 200, 200, 200, 200, 200, 200,
+			200, 200, 200, 200, 200, 200, 200, 200, 
+			200, 200, 200, 200, 200, 200, 200, 200,
+			200, 200, 200, 200, 200, 200, 200, 200, 
+			200, 200, 200, 200, 200, 200, 200, 200,
+			  2,   2,   2,   2,   2,   2,   2,   2,   
+			  2,   2, 200, 200, 200, 200, 200, 200,
+			200,   2,   2,   2,   2,   2,   2,   2,   
+			  2,   2,   2,   2,   2,   2,   2,   2,
+			  2,   2,   2,   2,   2,   2,   2,   2,  
+			  2,   2,   2, 200, 200, 200, 200, 200,
+			200,   2,   2,   2,   2,   2,   2,   2,  
+			  2,   2,   2,   2,   2,    2,  2,   2,
+			  2,   2,   2,   2,   2,   2,   2,   2,   
+			  2,   2,   2, 200, 200, 200, 200, 200
 		},        
 		//State 3
 		{
-                    203, 203, 203, 203, 203, 203, 203, 203, 
-                    203, 203, 203, 203, 203, 203, 203, 203,
-                    203, 203, 203, 203, 203, 203, 203, 203, 
-                    203, 203, 203, 203, 203, 203, 203, 203,
-                    203, 203, 203, 203, 203, 203, 203, 203, 
-                    203, 203, 203, 203, 203, 203,   5, 203,
-                      3,   3,   3,   3,   3,   3,   3,   3,   
-                      3,   3, 203, 203, 203, 203, 203, 203,
-                    203, 203, 203, 203, 203,   4, 203, 203, 
-                    203, 203, 203, 203, 203, 203, 203, 203,
-                    203, 203, 203, 203, 203, 203, 203, 203, 
-                    203, 203, 203, 203, 203, 203, 203, 203,
-                    203, 203, 203, 203, 203, 203, 203, 203, 
-                    203, 203, 203, 203, 203, 203, 203, 203,
-                    203, 203, 203, 203, 203, 203, 203, 203, 
-                    203, 203, 203, 203, 203, 203, 203, 203
+			203, 203, 203, 203, 203, 203, 203, 203, 
+			203, 203, 203, 203, 203, 203, 203, 203,
+			203, 203, 203, 203, 203, 203, 203, 203, 
+			203, 203, 203, 203, 203, 203, 203, 203,
+			203, 203, 203, 203, 203, 203, 203, 203, 
+			203, 203, 203, 203, 203, 203,   5, 203,
+			  3,   3,   3,   3,   3,   3,   3,   3,   
+			  3,   3, 203, 203, 203, 203, 203, 203,
+			203, 203, 203, 203, 203,   4, 203, 203, 
+			203, 203, 203, 203, 203, 203, 203, 203,
+			203, 203, 203, 203, 203, 203, 203, 203, 
+			203, 203, 203, 203, 203, 203, 203, 203,
+			203, 203, 203, 203, 203, 203, 203, 203, 
+			203, 203, 203, 203, 203, 203, 203, 203,
+			203, 203, 203, 203, 203, 203, 203, 203, 
+			203, 203, 203, 203, 203, 203, 203, 203
 		},        
 		//State 4
 		{
-                    201, 201, 201, 201, 201, 201, 201, 201, 
-                    201, 201, 201, 201, 201, 201, 201, 201,
-                    201, 201, 201, 201, 201, 201, 201, 201, 
-                    201, 201, 201, 201, 201, 201, 201, 201,
-                    201, 201, 201, 201, 201, 201, 201, 201, 
-                    201, 201, 201,   9, 201,   9, 201, 201,
-                    201, 201, 201, 201, 201, 201, 201, 201, 
-                    201, 201, 201, 201, 201, 201, 201, 201,
-                    201, 201, 201, 201, 201, 201, 201, 201, 
-                    201, 201, 201, 201, 201, 201, 201, 201,
-                    201, 201, 201, 201, 201, 201, 201, 201, 
-                    201, 201, 201, 201, 201, 201, 201, 201,
-                    201, 201, 201, 201, 201, 201, 201, 201, 
-                    201, 201, 201, 201, 201, 201, 201, 201,
-                    201, 201, 201, 201, 201, 201, 201, 201, 
-                    201, 201, 201, 201, 201, 201, 201, 201
+			201, 201, 201, 201, 201, 201, 201, 201, 
+			201, 201, 201, 201, 201, 201, 201, 201,
+			201, 201, 201, 201, 201, 201, 201, 201, 
+			201, 201, 201, 201, 201, 201, 201, 201,
+			201, 201, 201, 201, 201, 201, 201, 201, 
+			201, 201, 201,   9, 201,   9, 201, 201,
+			201, 201, 201, 201, 201, 201, 201, 201, 
+			201, 201, 201, 201, 201, 201, 201, 201,
+			201, 201, 201, 201, 201, 201, 201, 201, 
+			201, 201, 201, 201, 201, 201, 201, 201,
+			201, 201, 201, 201, 201, 201, 201, 201, 
+			201, 201, 201, 201, 201, 201, 201, 201,
+			201, 201, 201, 201, 201, 201, 201, 201, 
+			201, 201, 201, 201, 201, 201, 201, 201,
+			201, 201, 201, 201, 201, 201, 201, 201, 
+			201, 201, 201, 201, 201, 201, 201, 201
 		},
                 //State 5
 		{
-                    203, 203, 203, 203, 203, 203, 203, 203, 
-                    203, 203, 203, 203, 203, 203, 203, 203,
-                    203, 203, 203, 203, 203, 203, 203, 203, 
-                    203, 203, 203, 203, 203, 203, 203, 203,
-                    203, 203, 203, 203, 203, 203, 203, 203, 
-                    203, 203, 203, 203, 203, 203, 203, 203,
-                      5,   5,   5,   5,   5,   5,   5,   5,   
-                      5,   5, 203, 203, 203, 203, 203, 203,
-                    203, 203, 203, 203, 203,   4, 203, 203, 
-                    203, 203, 203, 203, 203, 203, 203, 203,
-                    203, 203, 203, 203, 203, 203, 203, 203, 
-                    203, 203, 203, 203, 203, 203, 203, 203,
-                    203, 203, 203, 203, 203, 203, 203, 203, 
-                    203, 203, 203, 203, 203, 203, 203, 203,
-                    203, 203, 203, 203, 203, 203, 203, 203, 
-                    203, 203, 203, 203, 203, 203, 203, 203
+			203, 203, 203, 203, 203, 203, 203, 203, 
+			203, 203, 203, 203, 203, 203, 203, 203,
+			203, 203, 203, 203, 203, 203, 203, 203, 
+			203, 203, 203, 203, 203, 203, 203, 203,
+			203, 203, 203, 203, 203, 203, 203, 203, 
+			203, 203, 203, 203, 203, 203, 203, 203,
+			  5,   5,   5,   5,   5,   5,   5,   5,   
+			  5,   5, 203, 203, 203, 203, 203, 203,
+			203, 203, 203, 203, 203,   4, 203, 203, 
+			203, 203, 203, 203, 203, 203, 203, 203,
+			203, 203, 203, 203, 203, 203, 203, 203, 
+			203, 203, 203, 203, 203, 203, 203, 203,
+			203, 203, 203, 203, 203, 203, 203, 203, 
+			203, 203, 203, 203, 203, 203, 203, 203,
+			203, 203, 203, 203, 203, 203, 203, 203, 
+			203, 203, 203, 203, 203, 203, 203, 203
 		},
                 //State 6
 		{
-                    204, 204, 204, 204, 204, 204, 204, 204, 
-                    204, 204, 204, 204, 204, 204, 204, 204,
-                    204, 204, 204, 204, 204, 204, 204, 204, 
-                    204, 204, 204, 204, 204, 204, 204, 204,
-                    204, 204, 204, 204, 204, 204, 204, 204, 
-                    204, 204, 204, 204, 204, 204, 204, 204,
-                    204, 204, 204, 204, 204, 204, 204, 204, 
-                    204, 204, 204, 204, 204, 205, 206, 204,
-                    204, 204, 204, 204, 204, 204, 204, 204, 
-                    204, 204, 204, 204, 204, 204, 204, 204,
-                    204, 204, 204, 204, 204, 204, 204, 204, 
-                    204, 204, 204, 204, 204, 204, 204, 204,
-                    204, 204, 204, 204, 204, 204, 204, 204, 
-                    204, 204, 204, 204, 204, 204, 204, 204,
-                    204, 204, 204, 204, 204, 204, 204, 204, 
-                    204, 204, 204, 204, 204, 204, 204, 204
+			204, 204, 204, 204, 204, 204, 204, 204, 
+			204, 204, 204, 204, 204, 204, 204, 204,
+			204, 204, 204, 204, 204, 204, 204, 204, 
+			204, 204, 204, 204, 204, 204, 204, 204,
+			204, 204, 204, 204, 204, 204, 204, 204, 
+			204, 204, 204, 204, 204, 204, 204, 204,
+			204, 204, 204, 204, 204, 204, 204, 204, 
+			204, 204, 204, 204, 204, 205, 206, 204,
+			204, 204, 204, 204, 204, 204, 204, 204, 
+			204, 204, 204, 204, 204, 204, 204, 204,
+			204, 204, 204, 204, 204, 204, 204, 204, 
+			204, 204, 204, 204, 204, 204, 204, 204,
+			204, 204, 204, 204, 204, 204, 204, 204, 
+			204, 204, 204, 204, 204, 204, 204, 204,
+			204, 204, 204, 204, 204, 204, 204, 204, 
+			204, 204, 204, 204, 204, 204, 204, 204
 		},
 		//State 7
 		{
-                    207, 207, 207, 207, 207, 207, 207, 207, 
-                    207, 207, 207, 207, 207, 207, 207, 207,
-                    207, 207, 207, 207, 207, 207, 207, 207, 
-                    207, 207, 207, 207, 207, 207, 207, 207,
-                    207, 207, 207, 207, 207, 207, 207, 207, 
-                    207, 207, 207, 207, 207, 207, 207, 207,
-                    207, 207, 207, 207, 207, 207, 207, 207,
-                    207, 207, 207, 207, 207, 208, 207, 207,
-                    207, 207, 207, 207, 207, 207, 207, 207, 
-                    207, 207, 207, 207, 207, 207, 207, 207,
-                    207, 207, 207, 207, 207, 207, 207, 207, 
-                    207, 207, 207, 207, 207, 207, 207, 207,
-                    207, 207, 207, 207, 207, 207, 207, 207, 
-                    207, 207, 207, 207, 207, 207, 207, 207,
-                    207, 207, 207, 207, 207, 207, 207, 207, 
-                    207, 207, 207, 207, 207, 207, 207, 207
-                },
+			207, 207, 207, 207, 207, 207, 207, 207, 
+			207, 207, 207, 207, 207, 207, 207, 207,
+			207, 207, 207, 207, 207, 207, 207, 207, 
+			207, 207, 207, 207, 207, 207, 207, 207,
+			207, 207, 207, 207, 207, 207, 207, 207, 
+			207, 207, 207, 207, 207, 207, 207, 207,
+			207, 207, 207, 207, 207, 207, 207, 207,
+			207, 207, 207, 207, 207, 208, 207, 207,
+			207, 207, 207, 207, 207, 207, 207, 207, 
+			207, 207, 207, 207, 207, 207, 207, 207,
+			207, 207, 207, 207, 207, 207, 207, 207, 
+			207, 207, 207, 207, 207, 207, 207, 207,
+			207, 207, 207, 207, 207, 207, 207, 207, 
+			207, 207, 207, 207, 207, 207, 207, 207,
+			207, 207, 207, 207, 207, 207, 207, 207, 
+			207, 207, 207, 207, 207, 207, 207, 207
+		},
         	//State 8
 		{
-                    209, 209, 209, 209, 209, 209, 209, 209, 
-                    209, 209, 209, 209, 209, 209, 209, 209,
-                    209, 209, 209, 209, 209, 209, 209, 209, 
-                    209, 209, 209, 209, 209, 209, 209, 209,
-                    209, 209, 209, 209, 209, 209, 209, 209, 
-                    209, 209, 209, 209, 209, 209, 209, 209,
-                    209, 209, 209, 209, 209, 209, 209, 209, 
-                    209, 209, 209, 209, 209, 210, 209, 209,
-                    209, 209, 209, 209, 209, 209, 209, 209, 
-                    209, 209, 209, 209, 209, 209, 209, 209,
-                    209, 209, 209, 209, 209, 209, 209, 209, 
-                    209, 209, 209, 209, 209, 209, 209, 209,
-                    209, 209, 209, 209, 209, 209, 209, 209, 
-                    209, 209, 209, 209, 209, 209, 209, 209,
-                    209, 209, 209, 209, 209, 209, 209, 209, 
-                    209, 209, 209, 209, 209, 209, 209, 209
-                },
+			209, 209, 209, 209, 209, 209, 209, 209, 
+			209, 209, 209, 209, 209, 209, 209, 209,
+			209, 209, 209, 209, 209, 209, 209, 209, 
+			209, 209, 209, 209, 209, 209, 209, 209,
+			209, 209, 209, 209, 209, 209, 209, 209, 
+			209, 209, 209, 209, 209, 209, 209, 209,
+			209, 209, 209, 209, 209, 209, 209, 209, 
+			209, 209, 209, 209, 209, 210, 209, 209,
+			209, 209, 209, 209, 209, 209, 209, 209, 
+			209, 209, 209, 209, 209, 209, 209, 209,
+			209, 209, 209, 209, 209, 209, 209, 209, 
+			209, 209, 209, 209, 209, 209, 209, 209,
+			209, 209, 209, 209, 209, 209, 209, 209, 
+			209, 209, 209, 209, 209, 209, 209, 209,
+			209, 209, 209, 209, 209, 209, 209, 209, 
+			209, 209, 209, 209, 209, 209, 209, 209
+		},
 		//State 9
 		{         
-                    203, 203, 203, 203, 203, 203, 203, 203, 
-                    203, 203, 203, 203, 203, 203, 203, 203,
-                    203, 203, 203, 203, 203, 203, 203, 203,
-                    203, 203, 203, 203, 203, 203, 203, 203,	 
-                    203, 203, 203, 203, 203, 203, 203, 203, 
-                    203, 203, 203, 203, 203, 203, 203, 203,	        
-                      9,   9,   9,   9,   9,   9,   9,   9,  
-                      9,   9, 203, 203, 203, 203, 203, 203,
-                    203, 203, 203, 203, 203, 203, 203, 203, 
-                    203, 203, 203, 203, 203, 203, 203, 203,
-                    203, 203, 203, 203, 203, 203, 203, 203, 
-                    203, 203, 203, 203, 203, 203, 203, 203,
-                    203, 203, 203, 203, 203, 203, 203, 203, 
-                    203, 203, 203, 203, 203, 203, 203, 203, 
-                    203, 203, 203, 203, 203, 203, 203, 203, 
-                    203, 203, 203, 203, 203, 203, 203, 203
-                }
+			203, 203, 203, 203, 203, 203, 203, 203, 
+			203, 203, 203, 203, 203, 203, 203, 203,
+			203, 203, 203, 203, 203, 203, 203, 203,
+			203, 203, 203, 203, 203, 203, 203, 203,	 
+			203, 203, 203, 203, 203, 203, 203, 203, 
+			203, 203, 203, 203, 203, 203, 203, 203,	        
+			  9,   9,   9,   9,   9,   9,   9,   9,  
+			  9,   9, 203, 203, 203, 203, 203, 203,
+			203, 203, 203, 203, 203, 203, 203, 203, 
+			203, 203, 203, 203, 203, 203, 203, 203,
+			203, 203, 203, 203, 203, 203, 203, 203, 
+			203, 203, 203, 203, 203, 203, 203, 203,
+			203, 203, 203, 203, 203, 203, 203, 203, 
+			203, 203, 203, 203, 203, 203, 203, 203, 
+			203, 203, 203, 203, 203, 203, 203, 203, 
+			203, 203, 203, 203, 203, 203, 203, 203
+        }
 	};
 
 	//This constants are declared to make the case switch more readable
@@ -316,33 +316,33 @@ public class CompilerScanner
 	 */
 	public CompilerScanner(File fileLocation, Hashtable table)
 	{
-            this.argument= fileLocation;
-            this.symbols = table;
-            this.lineNum = 0;
-            try
-            {
-                FileReader fileToRead = new FileReader(fileLocation);
-                //creates a new pushBackReader based of type 
-                //FileReader based of type File
-                pushBack= new PushbackReader(new FileReader(fileLocation));
-                lineNumRead = new LineNumberReader(fileToRead);
-                while(lineNumRead.readLine() != null)
-                {
-                    lineNum ++;
-                }//end while
-                   
-                lineNumRead.close();
-            }
-            catch(FileNotFoundException e)
-            {
-		System.err.println(ERROR_CONSOLE);
-		System.exit( 1);
-            }
-            catch(IOException e)
-            {
-		System.err.println(NOTHING_IN_IO);
-            }
+		this.argument= fileLocation;
+		this.symbols = table;
+		this.lineNum = 0;
+		try
+		{
+			FileReader fileToRead = new FileReader(fileLocation);
+			//creates a new pushBackReader based of type 
+			//FileReader based of type File
+			pushBack= new PushbackReader(new FileReader(fileLocation));
+			lineNumRead = new LineNumberReader(fileToRead);
+			while(lineNumRead.readLine() != null)
+			{
+				lineNum ++;
+			}//end while
+			   
+			lineNumRead.close();
+		}
+        catch(FileNotFoundException e)
+        {
+			System.err.println(ERROR_CONSOLE);
+			System.exit( 1);
         }
+        catch(IOException e)
+        {
+			System.err.println(NOTHING_IN_IO);
+        }
+    }
 	/**
 	 * getLexeme returns the lexeme when it is called lexeme is of type 
 	 *StringBuffer and it is retained with a toString. 
@@ -353,17 +353,17 @@ public class CompilerScanner
             return lexeme.toString();
 	}
 	/**
-         * is used to get the tokens 
-         * @return this.token that the pointer it currently is at
-         */
-        public Token getToken()
-        {
-            return this.tokens;
-        }
-        public int getLineCounter()
-        {
-            return this.lineNum;
-        }
+	* is used to get the tokens 
+    * @return this.token that the pointer it currently is at
+    */
+	public Token getToken()
+	{
+		return this.tokens;
+	}
+	public int getLineCounter()
+	{
+		return this.lineNum;
+	}
 	/**
 	 * nextToken is of type int to reuturn is lexeme is not lexeme or error
 	 * case switch statement represents the states of 
@@ -376,25 +376,25 @@ public class CompilerScanner
 	 */
 	public int nextToken()
 	{
-            //initializes as 0
-            //create as constants 
-            int nextCharacter = 0;
-            int currentState = 0;
-            int nextState = 0;
-           
-            //lexeme is initialized here
-            lexeme = new StringBuilder();
-            do
-            {
-                //goes to the next char
-                currentState = nextState;
-        	try	
+		//initializes as 0
+		//create as constants 
+		int nextCharacter = 0;
+		int currentState = 0;
+		int nextState = 0;
+	   
+		//lexeme is initialized here
+		lexeme = new StringBuilder();
+		do
 		{
-                    nextCharacter = pushBack.read();
-                }
-                catch(IOException e)
-                {
-                    System.err.println(NOTHING_IN_IO);
+			//goes to the next char
+			currentState = nextState;
+		try	
+		{
+            nextCharacter = pushBack.read();
+        }
+        catch(IOException e)
+        {
+            System.err.println(NOTHING_IN_IO);
 		}
 		// -1 is the representation of the end of file in integer format
 		if(nextCharacter == -1)
@@ -405,274 +405,273 @@ public class CompilerScanner
 		nextState = transitionTable[currentState][nextCharacter];
 		switch(nextState)
 		{	
-                    //if the case is 0 then turn the nextCharacter number 
-                    //into a char by appending
-                    //create this 0 1 .. as constants 		
-                    
-                    //-------------------------------------------//
-                    //CASE blocks represent the transitions from-//
-                    //Automita implemented ----------------------//
-                    //-------------------------------------------//
-                    case START_STATE:
-                        lexeme.append("");
-                        break;
+			//if the case is 0 then turn the nextCharacter number 
+			//into a char by appending
+			//create this 0 1 .. as constants 		
 			
-                    case COMMENT: 
-                        break;
+			//-------------------------------------------//
+			//CASE blocks represent the transitions from-//
+			//Automita implemented ----------------------//
+			//-------------------------------------------//
+			case START_STATE:
+				lexeme.append("");
+				break;
+	
+			case COMMENT: 
+				break;
+		
+			case IN_ID: 
+				lexeme.append(Character.toChars(nextCharacter));
+				break;
+		
+			case IN_DIGIT: 
+				lexeme.append(Character.toChars(nextCharacter)); 
+				break;
+		
+			case IN_E: 
+				lexeme.append(Character.toChars(nextCharacter)); 
+				break;
+		
+			case IN_FRACTION: 
+				lexeme.append(Character.toChars(nextCharacter)); 
+				break;
+		
+			case IN_LESS_THAN:             
+				lexeme.append(Character.toChars(nextCharacter));            
+				break;
 				
-                    case IN_ID: 
-                        lexeme.append(Character.toChars(nextCharacter));
-                        break;
+			case IN_GREATER_THAN:            
+				lexeme.append(Character.toChars(nextCharacter));             
+				break;
+					
+			case IN_COLON:            
+				lexeme.append(Character.toChars(nextCharacter));             
+				break;
+					
+			case E_PLUS_OR_MINUS:             
+				lexeme.append(Character.toChars(nextCharacter));             
+				break;		
+		
+				//case 200's are to be either pushed back or treated as	
+				// cases to append the lexeme	
+					   
+				//Done_ID uses if and else if statement to look for 
+				//reserved words
+			case DONE_ID:            
+				try           
+				{
+					pushBack.unread(nextCharacter);	     
+				}
+				catch(IOException e) 
+				{
+					System.err.println(NOTHING_IN_IO);   
+				}
+				if(lexeme.toString().equals("if"))
+				{
+					tokens = Token.IF;   
+				}
+				else if(lexeme.toString().equals("then"))
+				{
+					tokens = Token.THEN;   
+				}
+				else if(lexeme.toString().equals("else"))
+				{
+					tokens = Token.ELSE;   
+				}
+				else if(lexeme.toString().equals("while"))
+				{
+					tokens = Token.WHILE;   
+				}
+				else if(lexeme.toString().equals("do"))
+				{
+					tokens = Token.DO;   
+				}
+				else if(lexeme.toString().equals("var"))
+				{
+					tokens = Token.VAR;   
+				}
+				else if(lexeme.toString().equals("begin"))
+				{
+					tokens = Token.BEGIN;
+				}    
+				else if(lexeme.toString().equals("end"))
+				{
+					tokens = Token.END;   
+				}
+				else if(lexeme.toString().equals("array"))
+				{
+					tokens = Token.ARRAY;   
+				}
+				else if(lexeme.toString().equals("of"))
+				{
+					tokens = Token.OF;   
+				}
+				else if(lexeme.toString().equals("functions"))
+				{
+					tokens = Token.FUNCTION;   
+				}
+				else if(lexeme.toString().equals("procedure"))
+				{
+					tokens = Token.PROCEDURE;   
+				}
+				else if(lexeme.toString().equals("program"))
+				{
+					tokens = Token.PROGRAM;   
+				}
+				else if(lexeme.toString().equals("or"))
+				{
+					tokens = Token.OR;   
+				}
+				else if(lexeme.toString().equals("not"))
+				{
+					tokens = Token.NOT;   
+				}
+				else if(lexeme.toString().equals("mod"))
+				{
+					tokens = Token.MOD;   
+				}
+				else if(lexeme.toString().equals("and"))
+				{
+					tokens = Token.AND;   
+				}
+				else if(lexeme.toString().equals("real"))
+				{
+					tokens = Token.REAL;   
+				}
+				else if(lexeme.toString().equals("integer"))
+				{
+					tokens = Token.INTEGER;   
+				}
+				else tokens = Token.ID;
+				return IS_A_LEXEME;
+								
+			case ERROR:
+				//lexeme.append(Character.toChars(nextCharacter));
+				this.getLexeme();
+				//sets the line num read to null
+				//so the count will end before the end of file
+				lineNumRead = null;
+				System.err.println(UNKOWN_TOKEN + " " + nextCharacter);System.exit(0);
+				return IS_AN_ERROR;
+		  
+				//single symbol uses if and else if statements to look
+				//for single symbols
+			case SINGLE_SYMBOL:
+				lexeme.append(Character.toChars(nextCharacter));
+				if(lexeme.toString().equals(";"))
+				{
+					 tokens = Token.SEMI_COLON;
+				}
+				else if(lexeme.toString().equals("."))
+				{
+					tokens = Token.PERIOD;
+				}
+				else if(lexeme.toString().equals("["))
+				{
+					tokens = Token.LEFT_SQUARE_BRACKET;
+				}
+				else if(lexeme.toString().equals("]"))
+				{
+					tokens = Token.RIGHT_SQUARE_BRACKET;
+				}
+				else if(lexeme.toString().equals("("))
+				{
+					tokens = Token.LEFT_PARENTHESIS;
+				}
+				else if(lexeme.toString().equals(")"))
+				{
+					tokens = Token.RIGHT_PARENTHESIS;
+				}
+				else if(lexeme.toString().equals("+"))
+				{
+					tokens = Token.PLUS;
+				}
+				else if(lexeme.toString().equals("-"))
+				{
+					tokens = Token.MINUS;
+				}
+				else if(lexeme.toString().equals("*"))
+				{
+					tokens = Token.MULTIPLY;
+				}
+				else if(lexeme.toString().equals("/"))
+				{
+					tokens = Token.DIVIDE;
+				}
+				else if(lexeme.toString().equals("="))
+				{
+					tokens = Token.EQUAL;
+				}
+				return IS_A_LEXEME;
+		
+			case DONE_DIGIT:
+				try
+				{
+					pushBack.unread(nextCharacter);	
+				}
+				catch(IOException e)
+				{
+					System.err.println(NOTHING_IN_IO);
+				}
 				
-                    case IN_DIGIT: 
-                        lexeme.append(Character.toChars(nextCharacter)); 
-                        break;
+				tokens = Token.NUMBER;
+				return IS_A_LEXEME;	
+		   
+			case DONE_LESS_THAN: 
+				try
+				{
+					pushBack.unread(nextCharacter);
+				}
+				catch(IOException e)
+				{
+					System.err.println(NOTHING_IN_IO);
+				}
+				tokens = Token.LESS_THAN;
+				break;
+	
+			case DONE_LESS_THAN_EQUAL: 
+				lexeme.append(Character.toChars(nextCharacter));
+				tokens = Token.LESS_THAN_EQUAL;
+				return IS_A_LEXEME; 
+	   
+			case DONE_NOT_EQUAL:
+				lexeme.append(Character.toChars(nextCharacter));
+				tokens = Token.NOT_EQUAL;
+				return IS_A_LEXEME;	
+			 
+			case DONE_GREATER_THAN:	
+				try
+				{
+					pushBack.unread(nextCharacter);
+				}
+				catch(IOException e)
+				{
+					System.err.println(NOTHING_IN_IO);
+				}
+				tokens = Token.GREATER_THAN;
+				return IS_A_LEXEME;
 				
-                    case IN_E: 
-                        lexeme.append(Character.toChars(nextCharacter)); 
-                        break;
-				
-                    case IN_FRACTION: 
-                        lexeme.append(Character.toChars(nextCharacter)); 
-                        break;
-				
-                    case IN_LESS_THAN:             
-                        lexeme.append(Character.toChars(nextCharacter));            
-                        break;
-			            
-                    case IN_GREATER_THAN:            
-                        lexeme.append(Character.toChars(nextCharacter));             
-                        break;
-				            
-                    case IN_COLON:            
-                        lexeme.append(Character.toChars(nextCharacter));             
-                        break;
-				            
-                    case E_PLUS_OR_MINUS:             
-                        lexeme.append(Character.toChars(nextCharacter));             
-                        break;		
-				
-                        //case 200's are to be either pushed back or treated as	
-                        // cases to append the lexeme	
-                               
-                        //Done_ID uses if and else if statement to look for 
-                        //reserved words
-                    case DONE_ID:            
-                        try           
-                        {
-                            pushBack.unread(nextCharacter);	     
-                        }
-                        catch(IOException e) 
-                        {
-                            System.err.println(NOTHING_IN_IO);   
-                        }
-                        if(lexeme.toString().equals("if"))
-                        {
-                            tokens = Token.IF;   
-                        }
-                        else if(lexeme.toString().equals("then"))
-                        {
-                            tokens = Token.THEN;   
-                        }
-                        else if(lexeme.toString().equals("else"))
-                        {
-                            tokens = Token.ELSE;   
-                        }
-                        else if(lexeme.toString().equals("while"))
-                        {
-                            tokens = Token.WHILE;   
-                        }
-                        else if(lexeme.toString().equals("do"))
-                        {
-                            tokens = Token.DO;   
-                        }
-                        else if(lexeme.toString().equals("var"))
-                        {
-                            tokens = Token.VAR;   
-                        }
-                        else if(lexeme.toString().equals("begin"))
-                        {
-                            tokens = Token.BEGIN;
-                        }    
-                        else if(lexeme.toString().equals("end"))
-                        {
-                            tokens = Token.END;   
-                        }
-                        else if(lexeme.toString().equals("array"))
-                        {
-                            tokens = Token.ARRAY;   
-                        }
-                        else if(lexeme.toString().equals("of"))
-                        {
-                            tokens = Token.OF;   
-                        }
-                        else if(lexeme.toString().equals("functions"))
-                        {
-                            tokens = Token.FUNCTION;   
-                        }
-                        else if(lexeme.toString().equals("procedure"))
-                        {
-                            tokens = Token.PROCEDURE;   
-                        }
-                        else if(lexeme.toString().equals("program"))
-                        {
-                            tokens = Token.PROGRAM;   
-                        }
-                        else if(lexeme.toString().equals("or"))
-                        {
-                            tokens = Token.OR;   
-                        }
-                        else if(lexeme.toString().equals("not"))
-                        {
-                            tokens = Token.NOT;   
-                        }
-                        else if(lexeme.toString().equals("mod"))
-                        {
-                            tokens = Token.MOD;   
-                        }
-                        else if(lexeme.toString().equals("and"))
-                        {
-                            tokens = Token.AND;   
-                        }
-                        else if(lexeme.toString().equals("real"))
-                        {
-                            tokens = Token.REAL;   
-                        }
-                        else if(lexeme.toString().equals("integer"))
-                        {
-                            tokens = Token.INTEGER;   
-                        }
-                        else tokens = Token.ID;
-                        return IS_A_LEXEME;
-				                        
-                    case ERROR:
-                        //lexeme.append(Character.toChars(nextCharacter));
-                        this.getLexeme();
-                        //sets the line num read to null
-                        //so the count will end before the end of file
-                        lineNumRead = null;
-                        System.err.println(UNKOWN_TOKEN + " " + nextCharacter);System.exit(0);
-                        return IS_AN_ERROR;
-                  
-                        //single symbol uses if and else if statements to look
-                        //for single symbols
-                    case SINGLE_SYMBOL:
-                        lexeme.append(Character.toChars(nextCharacter));
-                        if(lexeme.toString().equals(";"))
-                        {
-                             tokens = Token.SEMI_COLON;
-                        }
-                        else if(lexeme.toString().equals("."))
-                        {
-                            tokens = Token.PERIOD;
-                        }
-                        else if(lexeme.toString().equals("["))
-                        {
-                            tokens = Token.LEFT_SQUARE_BRACKET;
-                        }
-                        else if(lexeme.toString().equals("]"))
-                        {
-                            tokens = Token.RIGHT_SQUARE_BRACKET;
-                        }
-                        else if(lexeme.toString().equals("("))
-                        {
-                            tokens = Token.LEFT_PARENTHESIS;
-                        }
-                        else if(lexeme.toString().equals(")"))
-                        {
-                            tokens = Token.RIGHT_PARENTHESIS;
-                        }
-                        else if(lexeme.toString().equals("+"))
-                        {
-                            tokens = Token.PLUS;
-                        }
-                        else if(lexeme.toString().equals("-"))
-                        {
-                            tokens = Token.MINUS;
-                        }
-                        else if(lexeme.toString().equals("*"))
-                        {
-                            tokens = Token.MULTIPLY;
-                        }
-                        else if(lexeme.toString().equals("/"))
-                        {
-                            tokens = Token.DIVIDE;
-                        }
-                        else if(lexeme.toString().equals("="))
-                        {
-                            tokens = Token.EQUAL;
-                        }
-                        return IS_A_LEXEME;
-				
-                    case DONE_DIGIT:
-                        try
-                        {
-                            pushBack.unread(nextCharacter);	
-                        }
-                        catch(IOException e)
-                        {
-                            System.err.println(NOTHING_IN_IO);
-                        }
-                        
-                        tokens = Token.NUMBER;
-                        return IS_A_LEXEME;	
-                   
-                    case DONE_LESS_THAN: 
-                        try
-                        {
-                            pushBack.unread(nextCharacter);
-                        }
-                        catch(IOException e)
-                        {
-                            System.err.println(NOTHING_IN_IO);
-                        }
-                        tokens = Token.LESS_THAN;
-                        break;
-			
-                    case DONE_LESS_THAN_EQUAL: 
-                        lexeme.append(Character.toChars(nextCharacter));
-                        tokens = Token.LESS_THAN_EQUAL;
-                        return IS_A_LEXEME; 
-			   
-                    case DONE_NOT_EQUAL:
-                        lexeme.append(Character.toChars(nextCharacter));
-                        tokens = Token.NOT_EQUAL;
-                        return IS_A_LEXEME;	
-                     
-                    case DONE_GREATER_THAN:	
-                        try
-                        {
-                            pushBack.unread(nextCharacter);
-                        }
-                        catch(IOException e)
-                        {
-                            System.err.println(NOTHING_IN_IO);
-                        }
-                        tokens = Token.GREATER_THAN;
-                        return IS_A_LEXEME;
-                        
-                    case DONE_GREATER_THAN_EQUAL:
-                        lexeme.append(Character.toChars(nextCharacter));
-                        tokens = Token.GREATER_THAN_EQUAL;
-                        return IS_A_LEXEME;
-				
-                    case DONE_COLON: 
-                        try
-                        {
-                            pushBack.unread(nextCharacter);
-                        }
-                        catch(IOException e)
-                        {
-                            System.err.println(NOTHING_IN_IO);
-                        }
-                        tokens = Token.COLON;
-                        return IS_A_LEXEME;
-				
-                    case DONE_COLON_EQUAL:
-                        lexeme.append(Character.toChars(nextCharacter));
-                        tokens = Token.COLON_EQUALS;
-                        return IS_A_LEXEME;		
-				
+			case DONE_GREATER_THAN_EQUAL:
+				lexeme.append(Character.toChars(nextCharacter));
+				tokens = Token.GREATER_THAN_EQUAL;
+				return IS_A_LEXEME;
+		
+			case DONE_COLON: 
+				try
+				{
+					pushBack.unread(nextCharacter);
+				}
+				catch(IOException e)
+				{
+					System.err.println(NOTHING_IN_IO);
+				}
+				tokens = Token.COLON;
+				return IS_A_LEXEME;
+		
+			case DONE_COLON_EQUAL:
+				lexeme.append(Character.toChars(nextCharacter));
+				tokens = Token.COLON_EQUALS;
+				return IS_A_LEXEME;		
 			}//end switch
 		}//end do
 		while(nextCharacter != -1);

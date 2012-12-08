@@ -1,4 +1,4 @@
-//package CompilerScanner;
+b//package CompilerScanner;
 
 import java.io.File;
 import java.util.Hashtable;
@@ -67,6 +67,7 @@ public class CompilerParser
 		else
 		{
 			match(currentToken.ID);//match ID
+			match(currentToken.COMMA);//match ;
 			identifier_list();
 		}
 	}
@@ -140,8 +141,6 @@ public class CompilerParser
 		{
 			subprogram_declarations();
 		}
-		else
-			currentToken = null;//null == lambda
 	}
 	
 	/**
@@ -194,9 +193,7 @@ public class CompilerParser
 			match(currentToken.LEFT_PARENTHESIS);//match (
 			parameter_list();
 			match(currentToken.RIGHT_PARENTHESIS);//match )
-		}
-		else 
-			currentToken = null;
+		} 
 	}
 	
 	/**
@@ -214,7 +211,7 @@ public class CompilerParser
 		}
 		else
 		{
-			if(currentToken = Token.ID)
+			if(currentToken == Token.ID)
 			{
 				identifier_list();
 				match(currentToken.COLON);
@@ -244,7 +241,7 @@ public class CompilerParser
 	public void optional_statements()
 	{
 		System.out.println("optional_statements");
-		if(currentToken = Token.ID)
+		if(currentToken == Token.ID)
 		{
 			statement_list();
 		}
@@ -255,7 +252,7 @@ public class CompilerParser
 	public void statement_list()
 	{
 		System.out.println("statement_list");
-		if(currentToken = Token.ID
+		if(currentToken == Token.ID
 		{
 			statement();
 		}
@@ -273,10 +270,37 @@ public class CompilerParser
 	public void statement()
 	{
 		System.out.println("statement");
-		if(currentToken = Token.ID)
+		if(currentToken == Token.ID)
 		{
-			
+			variable();
+			match(currentToken.COLON_EQUALS);//match assignop[:=]
+			expression();
 		}
+		else if(currentToken == Token.ID)
+		{
+			procedure_statement();
+		}
+		else if(currentToken == Token.BEGIN)
+		{
+			compound_statement();
+		}
+		else if(currentToken == Token.IF)
+		{
+			match(currentToken.IF);//match if
+			expression();
+			match(currentToken.THEN);//match then
+			statement();
+			match(currentToken.ELSE);//match else
+			statement();
+		}
+		else if(currentToken == Token.WHILE)
+		{
+			match(currentToken.WHILE);//match while
+			expression();
+			match(currentToken.DO);//match do
+			statement();
+		}	
+		//look at grammar a read? and a write?//else if(currentToken == 
 	}
 	
 	public void variable()
@@ -315,11 +339,56 @@ public class CompilerParser
 	public void expression_list()
 	{
 		System.out.println("expression_list");
+		if(currentToken == Token.COMMA)
+		{
+			expression();	
+		}
+		else
+		{
+			expression();
+			match(curentToken.COMMA)//match ,
+			expression_list();
+		}
 	}
 	
 	public void expression()
 	{
+		
 		System.out.println("expression");
+		if(currentToken == Token.ID)
+		{
+			simple_expression();
+		}
+		else if(currentToken == Token.ID)
+		{
+			
+			simple_expression();
+			if(currentToken == Token.EQUALS)
+			{
+				match(currentToken.EQUALS);//match = 
+			}
+			else if(currentToken == Token.NOT_EQUAL)
+			{
+				match(currentToken.NOT_EQUAL);//match <>
+			}
+			else if(currentToken == LESS_THAN)
+			{
+				match(currentToken.LESS_THAN);//match <
+			}
+			else if(currentToken == LESS_THAN_EQUAL)
+			{
+				match(currentToken.LESS_THAN_EQUAL);//match <=
+			}
+			else if(currentToken == Token.GREATER_THAN_EQUAL)
+			{
+				match(currentToken.GREATER_THAN_EQUAL);//match >=
+			}			
+			else if(currentToken == Token.GREATER)
+			{
+				match(currentToken.GREATER);//match >
+			}
+			simple_expression();
+		}
 	}
 	
 	public void simple_expressions()
