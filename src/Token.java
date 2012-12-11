@@ -33,6 +33,8 @@ public enum Token
 	INTEGER,
 	ID,
 	NUMBER,
+        READ,
+        WRITE,
 		
 	//Other units | Symbols.
 	SEMI_COLON,
