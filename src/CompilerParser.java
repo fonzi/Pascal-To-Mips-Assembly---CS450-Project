@@ -47,13 +47,20 @@ public class CompilerParser
     public void program()
     {
         System.out.println("program");
-        match(currentToken.PROGRAM);//match program
-        match(currentToken.ID);//match id
-        match(currentToken.SEMI_COLON);//match ;
-        declarations();
-        subprogram_declarations();
-        compound_statement();
-        match(currentToken.PERIOD);//match the .
+        if(currentToken == Token.PROGRAM)
+        {
+            match(currentToken.PROGRAM);//match program
+            match(currentToken.ID);//match id
+            match(currentToken.SEMI_COLON);//match ;
+            declarations();
+            subprogram_declarations();
+            compound_statement();
+            match(currentToken.PERIOD);//match the .
+        }
+        else 
+        {
+            error();
+        }
     }
 
     /**
@@ -64,12 +71,29 @@ public class CompilerParser
     {
         System.out.println("identifier_list");
         
+        if(currentToken == currentToken.ID)
+        {
+            match(currentToken.ID);//match ID
+            if(currentToken == Token.COMMA)
+            {
+                match(currentToken.COMMA);//match ,
+                identifier_list();
+            }
+        }
+        else 
+            error();
+        /*
         match(currentToken.ID);
         if(currentToken==Token.COMMA)
         {
             match(currentToken.COMMA);//match 
             identifier_list();
         }
+        else 
+        {
+            error();
+        }
+         */
     }
 
     /**
@@ -80,12 +104,18 @@ public class CompilerParser
     public void declarations()
     {
         System.out.println("declerations");
-        match(currentToken.VAR);//match var
-        identifier_list();
-        match(currentToken.COLON);//match :
-        type();
-        match(currentToken.SEMI_COLON);//match ;
-        declarations();
+        if(currentToken == Token.VAR)
+        {
+            match(currentToken.VAR);//match var
+            identifier_list();
+            match(currentToken.COLON);//match :
+            type();
+            match(currentToken.SEMI_COLON);//match ;
+            declarations();
+        }
+        else
+            return;
+        
     }
 
     /**
@@ -113,7 +143,6 @@ public class CompilerParser
             standard_type();
         }
     }
-
     /**
      * Standard_type matches either Number or Real only
      */
@@ -128,6 +157,8 @@ public class CompilerParser
         {
             match(currentToken.REAL);//match real
         }
+        else
+            error();
     }
 
     /**
@@ -137,11 +168,15 @@ public class CompilerParser
     public void subprogram_declarations()
     {
         System.out.println("subprogram_declarations");
-        subprogram_declaration();
-        if (currentToken == currentToken.SEMI_COLON)
+        if (currentToken == currentToken.FUNCTION)
         {
-            match(currentToken.SEMI_COLON);//match ;
-            subprogram_declarations();
+            subprogram_declaration();
+            if(currentToken == currentToken.SEMI_COLON)
+            {
+                match(currentToken.SEMI_COLON);//match ;
+            }
+            else 
+                return;
         }
     }
 
@@ -152,10 +187,15 @@ public class CompilerParser
     public void subprogram_declaration()
     {
         System.out.println("subprogram_declarations");
-        subprogram_head();
-        declarations();
-        subprogram_declarations();
-        compound_statement();
+        if(currentToken == Token.FUNCTION)
+        {
+            subprogram_head();
+            declarations();
+            subprogram_declarations();
+            compound_statement();
+        }
+        else
+            error();
     }
 
     /**
@@ -179,7 +219,10 @@ public class CompilerParser
             match(currentToken.PROCEDURE);//match procedure
             match(currentToken.ID);//match id
             arguments();
+            match(currentToken.SEMI_COLON);//match ;
         }
+        else
+            error();
     }
 
     /**
@@ -196,6 +239,8 @@ public class CompilerParser
             parameter_list();
             match(currentToken.RIGHT_PARENTHESIS);//match )
         }
+        else
+            return;
     }
 
     /**
@@ -213,6 +258,8 @@ public class CompilerParser
             match(currentToken.SEMI_COLON);//match ;
             parameter_list();
         }
+        else
+            error();
     }
 
     /**
@@ -222,9 +269,18 @@ public class CompilerParser
     public void compound_statement()
     {
         System.out.println("compound_statement");
-        match(currentToken.BEGIN);
+        if(currentToken == Token.BEGIN)
+        {
+            match(currentToken.BEGIN);
+        }
         optional_statements();
-        match(currentToken.END);
+        if(currentToken == Token.END)
+        {
+            match(currentToken.END);//match end
+        }
+        
+        else
+            error();
     }
 
     /**
@@ -234,7 +290,12 @@ public class CompilerParser
     public void optional_statements()
     {
         System.out.println("optional_statements");
-        statement_list();
+        if(currentToken == Token.ID)
+        {
+            statement_list();
+        }
+        else
+            return;
     }
 
     /**
@@ -248,10 +309,18 @@ public class CompilerParser
             match(currentToken.SEMI_COLON);//match ;
             statement_list();
         }
+        else
+            error();
     }
 
     /**
-     *
+     * Statement first calls variable then matches assingop followed by a call
+     * expression or calls procedure_statement or compound_statement or match 
+     * if followed by expression matched by then followed by statement and match
+     * else and call statement again. Or match while and call expression and 
+     * then match do and call statement. Or treat read as a token so call read. 
+     * Or treat write as token so call write. 
+     * 
      */
     public void statement()
     {
@@ -263,16 +332,16 @@ public class CompilerParser
                 match(currentToken.COLON_EQUALS);//match := 
                 expression();
             }//end checl [
-            if(currentToken == Token.LEFT_PARENTHESIS)
+            else if(currentToken == Token.LEFT_PARENTHESIS)
             {
                 procedure_statement();
             }//end check (
         }//end check ID
-        if(currentToken == Token.BEGIN)
+        else if(currentToken == Token.BEGIN)
         {
             compound_statement();
         }//end checl begin
-        if(currentToken == Token.IF)
+        else if(currentToken == Token.IF)
         {
             match(currentToken.IF);//match IF
             expression();
@@ -281,19 +350,24 @@ public class CompilerParser
             match(currentToken.ELSE);//match else
             statement();
         }
-        //read and write will be treated as Tokens.
-        if(currentToken == Token.READ)
+        //----------------------------------------//
+        //read and write will be treated as Tokens//
+        //----------------------------------------//
+        else if(currentToken == Token.READ)
         {
             match(currentToken.READ);//match READ
         }
-        if(currentToken == Token.WRITE)
+        else if(currentToken == Token.WRITE)
         {
             match(currentToken.WRITE);//match write
         }
+        else
+            error();
     }
 
     /**
-     *
+     * Variable first calls ID then checks if [ follows
+     * if it does then it calls expression if not then it errors out
      */
     public void variable()
     {
@@ -305,10 +379,14 @@ public class CompilerParser
             expression();
             match(currentToken.RIGHT_SQUARE_BRACKET);//match ]
         }
+        else
+            error();
     }
 
     /**
-     *
+     * Procedure Statement matches ID first. Then it checks to see if a "(" 
+     * follows if it does then match "(" and call expression list and match ")"
+     * if it does not follow then just error
      */
     public void procedure_statement()
     {
@@ -320,11 +398,13 @@ public class CompilerParser
             expression_list();
             match(currentToken.RIGHT_PARENTHESIS);//match )
         }
-
+        else
+            error();
     }
 
     /**
-     *
+     * Expression List calls expression then checks if a comma follows
+     * if a comma does follow then it calls expression_list otherwise error
      */
     public void expression_list()
     {
@@ -335,10 +415,15 @@ public class CompilerParser
             match(currentToken.COMMA);//match ,
             expression_list();
         }
+        else
+            error();
     }
 
     /**
-     *
+     * Expression calls simple_expression first then the look ahead
+     * checks if the token an is =, < , > , >=, <=, or <>, if yes 
+     * then tou match whatever it is. 
+     * then call simple_expression.
      */
     public void expression()
     {
@@ -352,10 +437,15 @@ public class CompilerParser
             match(currentToken);//match whatever the relop
             simple_expression();
         }
+        else
+            error();
     }
 
     /**
-     *
+     * Simple expression checks if ID since it looks ahead 
+     * is so calls term and simple part 
+     * If it matches as a + or - then if matches 
+     * and calls term and simpler_part
      */
     public void simple_expression()
     {
@@ -371,10 +461,13 @@ public class CompilerParser
           term();
           simple_part();
         }
+        else 
+            error();
     }
 
     /**
-     *
+     * Simple part checks if the curent token is a "+" , "-" , or "or" 
+     * if that is true then nothing 
      */
     public void simple_part()
     {
@@ -384,10 +477,12 @@ public class CompilerParser
         {
             match(currentToken);//match addop 
         }
+        else
+            return;
     }
 
     /**
-     *
+     * Term only calls factor and term_part
      */
     public void term()
     {
@@ -397,7 +492,8 @@ public class CompilerParser
     }
 
     /**
-     *
+     * Term part checks if currentToken is "*", "/" , "mod", or "and".
+     * If so then it calls factor and term_part else just error 
      */
     public void term_part()
     {
@@ -408,10 +504,19 @@ public class CompilerParser
             factor();
             term_part();
         }
+        else
+            return;
     }
 
     /**
-     *
+     * Factor checks if currentToken is ID if it is id the it matches ID 
+     * then more checks happen 
+     * checks if token = [
+     * chekcs if token = (
+     * checks if token = number
+     * if yes then just match and call expresssion
+     * 
+     * 
      */
     public void factor()
     {
@@ -425,13 +530,13 @@ public class CompilerParser
                 expression();
                 match(currentToken.RIGHT_SQUARE_BRACKET);//match ]
             }
-            if(currentToken == Token.LEFT_PARENTHESIS)
+            else if(currentToken == Token.LEFT_PARENTHESIS)
             {
                 match(currentToken.LEFT_PARENTHESIS);//match (
                 expression_list();
                 match(currentToken.RIGHT_PARENTHESIS);//match )
             }
-            if(currentToken == Token.NUMBER)
+            else if(currentToken == Token.NUMBER)
             {
                 match(currentToken.NUMBER);
             }
@@ -440,42 +545,51 @@ public class CompilerParser
         {
             match(currentToken.NUMBER);//match number
         }//end number check
-        if(currentToken == Token.LEFT_PARENTHESIS)
+        else if(currentToken == Token.LEFT_PARENTHESIS)
         {
             match(currentToken.LEFT_PARENTHESIS);//match (
             expression_list();
             match(currentToken.RIGHT_PARENTHESIS);//match )
         }//end ( check
-        if(currentToken == Token.NOT)
+        else if(currentToken == Token.NOT)
         {
             match(currentToken.NOT);//match not
             factor();
         }//end not check
+        else
+            error();
     }
 
     /**
-     *
+     * Checks if + or - 
+     * If yes then match correspondinly 
+     * else is error
      */
     public void sign()
     {
         System.out.println("sign");
         if (currentToken == Token.PLUS)
         {
-            match(currentToken.PLUS);
+            match(currentToken.PLUS);//match + 
         }
         else if (currentToken == Token.MINUS)
         {
-            match(currentToken.MINUS);
+            match(currentToken.MINUS);//match - 
         }
+        else
+            error();
     }
 
     /**
-     *
-     * @param expectedToken
+     * Match bases the answer from the scanner variables
+     * is a lexeme
+     * is not a lexeme
+     * is and error 
+     * @param expectedToken : is of type token 
      */
     public void match(Token expectedToken)
     {
-        System.out.println("match");
+        System.out.println("match : [" + currentToken +"]");
         if (currentToken == expectedToken)
         {
             int scan = scanner.nextToken();
@@ -497,12 +611,20 @@ public class CompilerParser
     }//end match
 
     /**
-     *
+     * Error only exits the parser to avoid careless coding. 
      */
     public void error()
     {
+        //-------------------------------------//
+        //The Line counter needs implementation//
+        //-------------------------------------//
+        
+        
         System.out.println("error");
-        System.err.println("Parse error at line : " + scanner.getLineCounter());
+        //The line counter was deployed wrong on the scanner need to fix.
+        //System.err.println("Parse error at line : " + scanner.getLineCounter());
+        
+        
         System.exit(1);
     }
 }
