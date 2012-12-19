@@ -2,8 +2,9 @@ package CompilerScanner;
 
 import java.util.Hashtable;
 /**
+ * Symbol Table is of type hashtable to hold the reserved words and lexems
+ * This class is called constantly by the scanner.
  * @author Fonzi
- *
  */
 
 public class SymbolTable extends Hashtable

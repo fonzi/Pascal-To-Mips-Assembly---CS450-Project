@@ -1,11 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package CompilerScanner;
 import java.io.File;
 /**
- *
+ * Executable is the main of the compiler
+ * This is the class that initialez everything and takes in the argument
+ * for the file location.
  * @author Alfonso Vazquez
  */
 public class Executable 
@@ -25,6 +24,12 @@ public class Executable
             CompilerParser parse = new CompilerParser(fileName);
             parse.program();
             
+            //---------------------------------------------------------------//
+            //                          This while loop is for               //
+            //                          the scanner test                     //
+            //---------------------------------------------------------------//
+            
+            /*
             while (i != 1)
             {
                 i = scan.nextToken();
@@ -35,5 +40,7 @@ public class Executable
                 }
             }//end while
             //System.out.println(scan.getLineCounter());
+            */
+            
 	}//end main
 }

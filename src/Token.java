@@ -3,10 +3,8 @@
  * units from the small pascal language
  * 
  * @author Alfonso Vazquez
- *
  */
 package CompilerScanner;
-
 public enum Token 
 {
 	
