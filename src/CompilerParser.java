@@ -41,24 +41,24 @@ public class CompilerParser
      * declarations > subprogram_declarations > compound_statement
      * and then it would match again.
      */
-    public void program()
+    public ParserNode program()
     {
         System.out.println("program");
-        //if (currentToken == Token.PROGRAM)
-        //{
+
+        ParserNode answer = declarations();
+        ParserNode left = answer;
+
+        answer = new ProgramNode();
+        
         match(currentToken.PROGRAM);//match program
         match(currentToken.ID);//match id
         match(currentToken.SEMI_COLON);//match ;
+
         declarations();
         subprogram_declarations();
         compound_statement();
         match(currentToken.PERIOD);//match the .
         System.out.println("CODE DONE :)");
-        //}
-        //else
-        //{
-           // error();
-        //}
     }
 
     /**

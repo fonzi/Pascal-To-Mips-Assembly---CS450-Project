@@ -551,11 +551,6 @@ public class CompilerScanner
                 case ERROR:
                     //lexeme.append(Character.toChars(nextCharacter));
                     this.getLexeme();
-                    //sets the line num read to null
-                    //so the count will end before the end of file
-                    //lineNumRead = null;
-                    //System.err.println(UNKOWN_TOKEN + " " + nextCharacter);
-                    //System.exit(0);
                     return IS_AN_ERROR;
 
                 //single symbol uses if and else if statements to look

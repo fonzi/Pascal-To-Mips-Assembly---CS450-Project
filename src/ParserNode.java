@@ -4,7 +4,10 @@
 public abstract class ParserNode
 {
 	public abstract int calcVal();
-	public abstract object program();
+	public abstract ParserNode program();
+	public abstract ParserNode declarations();
+	public abstract ParserNode compound_statement();
+	
 
 	public String Treelevel(int level)
 	{
