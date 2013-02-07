@@ -9,14 +9,16 @@ public class OpNode extends ParserNode
 	{
 		this.op = operation;
 	}
-
+	@Override
 	public int calcVal()
 	{
 		int value = 0;
 		if(op == Token.PLUS)
 		{
-			v int value = 0;
-        if( attribute != null) {
+			int value = 0;
+		}
+        if( attribute != null) 
+        {
             value = Integer.parseInt(attribute);alue = left.calcVal() + right.calcVal();
 		}
 		else if(op == Token.MINUS)
@@ -37,5 +39,4 @@ public class OpNode extends ParserNode
 		}
 		return (value);
 	}
-
 }

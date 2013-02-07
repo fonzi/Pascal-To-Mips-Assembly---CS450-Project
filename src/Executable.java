@@ -1,5 +1,4 @@
-
-package CompilerScanner;
+//package CompilerScanner;
 import java.io.File;
 /**
  * Executable is the main of the compiler

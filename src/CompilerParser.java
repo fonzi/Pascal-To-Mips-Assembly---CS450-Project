@@ -1,4 +1,4 @@
-package CompilerScanner;
+//package CompilerScanner;
 
 import java.io.File;
 import java.util.Hashtable;
