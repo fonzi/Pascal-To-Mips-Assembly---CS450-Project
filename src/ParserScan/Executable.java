@@ -1,4 +1,6 @@
-//package CompilerScanner;
+
+package CompilerScanner.ParserScan;
+import CompilerScanner.ParserScan.CompilerParser;
 import java.io.File;
 /**
  * Executable is the main of the compiler
@@ -21,14 +23,15 @@ public class Executable
             SymbolTable table = new SymbolTable();
             CompilerScanner scan = new CompilerScanner(file,table);
             CompilerParser parse = new CompilerParser(fileName);
-            parse.program();
+            
             
             //---------------------------------------------------------------//
             //                          This while loop is for               //
             //                          the scanner test                     //
             //---------------------------------------------------------------//
-            
-            /*
+            System.out.println("--------------------");            
+            System.out.println("THIS IS THE SCANNER");
+            System.out.println("--------------------");            
             while (i != 1)
             {
                 i = scan.nextToken();
@@ -39,7 +42,15 @@ public class Executable
                 }
             }//end while
             //System.out.println(scan.getLineCounter());
-            */
+            
+            
+            System.out.println("--------------------");            
+            System.out.println("THIS IS THE PARSER");
+            System.out.println("--------------------"); 
+            parse.program();
+            
+    
+            
             
 	}//end main
 }

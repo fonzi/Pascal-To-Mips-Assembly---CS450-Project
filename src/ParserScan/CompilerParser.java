@@ -1,5 +1,6 @@
-//package CompilerScanner;
+package CompilerScanner.ParserScan;
 
+import CompilerScanner.Node.ParserNode;
 import java.io.File;
 import java.util.Hashtable;
 
@@ -41,23 +42,19 @@ public class CompilerParser
      * declarations > subprogram_declarations > compound_statement
      * and then it would match again.
      */
-    public ParserNode program()
+    public void program()
     {
         System.out.println("program");
-
-        ParserNode answer = declarations;
-
-        answer = new ProgramNode();
-        
+        //ParserNode answer = declarations();
         match(currentToken.PROGRAM);//match program
         match(currentToken.ID);//match id
         match(currentToken.SEMI_COLON);//match ;
-
         declarations();
         subprogram_declarations();
         compound_statement();
         match(currentToken.PERIOD);//match the .
         System.out.println("CODE DONE :)");
+        //return(answer);
     }
 
     /**
@@ -67,12 +64,14 @@ public class CompilerParser
     public void identifier_list()
     {
         System.out.println("identifier_list");
+        //ParserNode answer = null;
         match(currentToken.ID);//match ID
         if (currentToken == Token.COMMA)
         {
             match(currentToken.COMMA);//match ,
             identifier_list();
         }
+        //return(answer);
     }
 
     /**
@@ -82,6 +81,7 @@ public class CompilerParser
     public void declarations()
     {
         System.out.println("declerations");
+        //ParserNode answer = identifier_list();
         if (currentToken == Token.VAR)
         {
             match(currentToken.VAR);//match var
@@ -91,11 +91,7 @@ public class CompilerParser
             match(currentToken.SEMI_COLON);//match ;
             declarations();
         }
-        else
-        {
-            return;
-        }
-
+        //return(answer);
     }
 
     /**
