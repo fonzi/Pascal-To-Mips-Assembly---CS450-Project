@@ -4,7 +4,7 @@
  * 
  * @author Alfonso Vazquez
  */
-package CompilerScanner;
+//package CompilerScanner;
 public enum Token 
 {
 	

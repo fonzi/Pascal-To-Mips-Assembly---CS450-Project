@@ -1,7 +1,17 @@
-public class ProgramNode extends ParserNode
+public class ProgramNode extends ProgramNode
 {
-	ParserNode declarations();
-	ParserNode subprogram_declarations();
-	ParserNode compound_statement();
-	
+	@Override 
+	public String Treelevel(int level)
+	{
+		String answer = "";
+		if (level > 0)
+		{
+			answer = "|--";
+		}
+		for(int i = 1; i < level; i ++)
+		{
+			answer += "---";
+		}
+		return(answer);
+	}
 }

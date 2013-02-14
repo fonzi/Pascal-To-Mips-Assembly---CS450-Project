@@ -45,8 +45,7 @@ public class CompilerParser
     {
         System.out.println("program");
 
-        ParserNode answer = declarations();
-        ParserNode left = answer;
+        ParserNode answer = declarations;
 
         answer = new ProgramNode();
         
