@@ -1,5 +1,6 @@
 
 package CompilerScanner.ParserScan;
+import CompilerScanner.Node.ParserNode;
 import CompilerScanner.ParserScan.CompilerParser;
 import java.io.File;
 /**
@@ -23,8 +24,6 @@ public class Executable
             SymbolTable table = new SymbolTable();
             CompilerScanner scan = new CompilerScanner(file,table);
             CompilerParser parse = new CompilerParser(fileName);
-            
-            
             //---------------------------------------------------------------//
             //                          This while loop is for               //
             //                          the scanner test                     //
@@ -49,7 +48,7 @@ public class Executable
             System.out.println("--------------------"); 
             parse.program();
             
-    
+            
             
             
 	}//end main

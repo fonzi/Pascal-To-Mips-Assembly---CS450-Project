@@ -45,7 +45,7 @@ public class CompilerParser
     public void program()
     {
         System.out.println("program");
-        //ParserNode answer = declarations();
+       // ParserNode answer = declarations();
         match(currentToken.PROGRAM);//match program
         match(currentToken.ID);//match id
         match(currentToken.SEMI_COLON);//match ;
@@ -64,12 +64,13 @@ public class CompilerParser
     public void identifier_list()
     {
         System.out.println("identifier_list");
-        //ParserNode answer = null;
+        ParserNode answer=null;
         match(currentToken.ID);//match ID
         if (currentToken == Token.COMMA)
         {
             match(currentToken.COMMA);//match ,
             identifier_list();
+            //answer = identifier_list();
         }
         //return(answer);
     }
@@ -91,7 +92,7 @@ public class CompilerParser
             match(currentToken.SEMI_COLON);//match ;
             declarations();
         }
-        //return(answer);
+       // return(answer);
     }
 
     /**
