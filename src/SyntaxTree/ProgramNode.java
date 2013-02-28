@@ -107,6 +107,10 @@ public class ProgramNode extends Node
     {
         String answer = super.indentedToString(level);
         answer += "Value " + this.attribute + "\n";
+        answer += subprogram.indentedToString(level+1);
+        answer += declarationsNode.indentedToString(level+1);
+        answer += compoundNode.indentedToString(level+1);
+
         return answer;
     }
 }

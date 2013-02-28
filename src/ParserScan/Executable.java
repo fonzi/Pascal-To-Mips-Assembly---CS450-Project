@@ -1,6 +1,5 @@
 
 package CompilerScanner.ParserScan;
-import CompilerScanner.Node.ParserNode;
 import CompilerScanner.ParserScan.CompilerParser;
 import java.io.File;
 /**

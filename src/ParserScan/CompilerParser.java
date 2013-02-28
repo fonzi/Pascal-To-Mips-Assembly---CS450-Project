@@ -1,6 +1,5 @@
 package CompilerScanner.ParserScan;
 
-import CompilerScanner.Node.ParserNode;
 import java.io.File;
 import java.util.Hashtable;
 
@@ -64,7 +63,7 @@ public class CompilerParser
     public void identifier_list()
     {
         System.out.println("identifier_list");
-        ParserNode answer=null;
+       // ParserNode answer=null;
         match(currentToken.ID);//match ID
         if (currentToken == Token.COMMA)
         {
