@@ -11,6 +11,7 @@ package CompilerScanner.SyntaxTree;
 //third in line
 public class SubprogramNode extends Node
 {
+
     Node first;
     Node second;
     Node third;
@@ -19,7 +20,6 @@ public class SubprogramNode extends Node
 
     public SubprogramNode(){}
 
-    
     public String getCode()
     {
         return code;
@@ -69,7 +69,7 @@ public class SubprogramNode extends Node
     {
         this.third = third;
     }
-    
+
     @Override
     public String indentedToString(int level)
     {

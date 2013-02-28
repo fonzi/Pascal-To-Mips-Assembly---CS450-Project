@@ -1,0 +1,6 @@
+program foo;
+var i: integer;
+var x: integer;
+begin 
+end
+.

@@ -41,11 +41,7 @@ public class DeclarationsNode extends Node
     {
         String answer = " ";
         answer = super.indentedToString(level);
-        answer += "Value " + this.list.toString() + "\n";
-        for(int i = 0; i < list.size(); i ++)
-        {         
-            answer += list.get(i).indentedToString(level + 1);
-        }
+        answer += "Declarations " + this.list.toString() + "\n";
         return answer;
     }
 } 

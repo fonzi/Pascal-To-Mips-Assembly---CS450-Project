@@ -2,6 +2,14 @@ package CompilerScanner.ParserScan;
 
 import java.io.File;
 import java.util.Hashtable;
+import CompilerScanner.SyntaxTree.CompoundStatementNode;
+import CompilerScanner.SyntaxTree.DeclarationsNode;
+import CompilerScanner.SyntaxTree.Node;
+import CompilerScanner.SyntaxTree.ProgramNode;
+import CompilerScanner.SyntaxTree.SubprogramNode;
+import java.util.ArrayList;
+
+//do what veerav thaught me with subprogram declarations and compound statements. 
 
 /**
  * A Parser that takes a read in file from CompilerScanner
@@ -29,7 +37,7 @@ public class CompilerParser
     public CompilerParser(String filename)
     {
         File input = new File(filename);
-        Hashtable symbols = new SymbolTable();
+        Hashtable symbols = new SymbolTable();//need to use as token identifier
         scanner = new CompilerScanner(input, symbols);
         scanner.nextToken();
         currentToken = scanner.getToken();
@@ -41,57 +49,60 @@ public class CompilerParser
      * declarations > subprogram_declarations > compound_statement
      * and then it would match again.
      */
-    public void program()
+    public Node program()
     {
+        Node answer;
         System.out.println("program");
-       // ParserNode answer = declarations();
         match(currentToken.PROGRAM);//match program
+        answer = new ProgramNode(currentToken);
         match(currentToken.ID);//match id
         match(currentToken.SEMI_COLON);//match ;
-        declarations();
+        Node right = declarations();
         subprogram_declarations();
         compound_statement();
         match(currentToken.PERIOD);//match the .
         System.out.println("CODE DONE :)");
-        //return(answer);
+        ((ProgramNode)answer).setDeclarationsNode(right);
+        return(answer);
     }
 
     /**
      * Identifier list matches an id or matches and id and calls
      * identifier_list
      */
-    public void identifier_list()
+    public ArrayList identifier_list()
     {
         System.out.println("identifier_list");
-       // ParserNode answer=null;
+        ArrayList answer = new ArrayList();
+        answer.add(scanner.getLexeme());
         match(currentToken.ID);//match ID
-        if (currentToken == Token.COMMA)
+        while (currentToken == Token.COMMA)
         {
             match(currentToken.COMMA);//match ,
-            identifier_list();
-            //answer = identifier_list();
+            //identifier_list();
         }
-        //return(answer);
+        return(answer);
     }
 
     /**
      * declarations matches var and calls
      * identifier_list > matches > type > matches > declarations
      */
-    public void declarations()
+    public Node declarations()
     {
         System.out.println("declerations");
-        //ParserNode answer = identifier_list();
+        Node answer = new DeclarationsNode();
         if (currentToken == Token.VAR)
         {
+            
             match(currentToken.VAR);//match var
-            identifier_list();
+            ((DeclarationsNode)answer).setList(identifier_list());
             match(currentToken.COLON);//match :
             type();
             match(currentToken.SEMI_COLON);//match ;
-            declarations();
+            ((DeclarationsNode)answer).setRight(declarations());
         }
-       // return(answer);
+        return(answer);
     }
 
     /**
@@ -130,7 +141,9 @@ public class CompilerParser
             match(currentToken.REAL);//match real
         }
         else
+        {
             error();
+        }
     }
 
     /**
@@ -140,14 +153,16 @@ public class CompilerParser
     public void subprogram_declarations()
     {
         System.out.println("subprogram_declarations");
-        if(currentToken == Token.FUNCTION || currentToken == Token.PROCEDURE)
+        if (currentToken == Token.FUNCTION || currentToken == Token.PROCEDURE)
         {
             subprogram_declarations();
             match(currentToken.SEMI_COLON);//match ;
             subprogram_declarations();
         }
-        else 
+        else
+        {
             return;
+        }
     }
 
     /**
@@ -190,7 +205,9 @@ public class CompilerParser
             match(currentToken.SEMI_COLON);//match ;
         }
         else
+        {
             error();
+        }
     }
 
     /**
@@ -298,7 +315,7 @@ public class CompilerParser
                 match(currentToken.COLON_EQUALS);//match := 
                 expression();
             }//end checl [
-            else if(currentToken == Token.COLON_EQUALS)
+            else if (currentToken == Token.COLON_EQUALS)
             {
                 match(currentToken.COLON_EQUALS);//match :=
                 expression();
@@ -321,7 +338,7 @@ public class CompilerParser
             match(currentToken.ELSE);//match else
             statement();
         }
-        else if(currentToken == Token.WHILE)
+        else if (currentToken == Token.WHILE)
         {
             match(currentToken.WHILE);//match IF
             expression();
@@ -332,7 +349,7 @@ public class CompilerParser
         //read and write will be treated as Tokens//
         //----------------------------------------//
         else if (currentToken == Token.READ)
-        {     
+        {
             match(currentToken.READ);//match READ
             match(currentToken.LEFT_PARENTHESIS);
             match(currentToken.ID);//
@@ -418,27 +435,27 @@ public class CompilerParser
             match(currentToken.EQUAL);//match whatever the relop
             simple_expression();
         }
-        else if(currentToken == Token.LESS_THAN)
+        else if (currentToken == Token.LESS_THAN)
         {
             match(currentToken.LESS_THAN);//match less than
             simple_expression();
         }
-        else if(currentToken == Token.GREATER_THAN)
+        else if (currentToken == Token.GREATER_THAN)
         {
             match(currentToken.GREATER_THAN);//match >
             simple_expression();
         }
-        else if(currentToken == Token.GREATER_THAN_EQUAL)
+        else if (currentToken == Token.GREATER_THAN_EQUAL)
         {
             match(currentToken.GREATER_THAN_EQUAL);//match >=
             simple_expression();
         }
-        else if(currentToken == Token.LESS_THAN_EQUAL)
+        else if (currentToken == Token.LESS_THAN_EQUAL)
         {
             match(currentToken.LESS_THAN_EQUAL);
             simple_expression();
         }
-        else if(currentToken == Token.NOT_EQUAL)
+        else if (currentToken == Token.NOT_EQUAL)
         {
             match(currentToken.NOT_EQUAL);
             simple_expression();
@@ -454,7 +471,7 @@ public class CompilerParser
     public void simple_expression()
     {
         System.out.println("simple_expressions");
-        if ( currentToken == Token.PLUS|| currentToken == Token.MINUS )
+        if (currentToken == Token.PLUS || currentToken == Token.MINUS)
         {
             sign();
         }
@@ -516,20 +533,20 @@ public class CompilerParser
             factor();
             term_part();
         }
-        else if(currentToken == Token.DIVIDE)
+        else if (currentToken == Token.DIVIDE)
         {
             match(currentToken.DIVIDE);//match /
             factor();
             term_part();
         }
-        else if(currentToken == Token.MOD)
+        else if (currentToken == Token.MOD)
         {
             match(currentToken.MOD);//match mod
             factor();
             term_part();
         }
-        else if(currentToken == Token.AND)
-        { 
+        else if (currentToken == Token.AND)
+        {
             match(currentToken.AND);//match and
             factor();
             term_part();
@@ -650,13 +667,9 @@ public class CompilerParser
         //-------------------------------------//
         //The Line counter needs implementation//
         //-------------------------------------//
-
-
         System.out.println("error");
         //The line counter was deployed wrong on the scanner need to fix
         //System.err.println("Parse error at line : " + scanner.getLineCounter());
-
-
         System.exit(1);
     }
 }

@@ -1,6 +1,7 @@
 
 package CompilerScanner.ParserScan;
 import CompilerScanner.ParserScan.CompilerParser;
+import CompilerScanner.SyntaxTree.Node;
 import java.io.File;
 /**
  * Executable is the main of the compiler
@@ -23,6 +24,7 @@ public class Executable
             SymbolTable table = new SymbolTable();
             CompilerScanner scan = new CompilerScanner(file,table);
             CompilerParser parse = new CompilerParser(fileName);
+            Node tree;
             //---------------------------------------------------------------//
             //                          This while loop is for               //
             //                          the scanner test                     //
@@ -45,9 +47,8 @@ public class Executable
             System.out.println("--------------------");            
             System.out.println("THIS IS THE PARSER");
             System.out.println("--------------------"); 
-            parse.program();
-            
-            
+            tree = parse.program();
+            System.out.println(tree.indentedToString(0));
             
             
 	}//end main

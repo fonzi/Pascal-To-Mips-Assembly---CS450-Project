@@ -25,7 +25,7 @@ public class CompoundStatementNode extends Node
     {
         String answer = " ";
         answer = super.indentedToString(level);
-        answer += "Value " + this.statementList.toString() + "\n";
+        answer += "Compound Statement" + this.statementList.toString() + "\n";
         for(int i = 0; i < statementList.size(); i ++)
         {            
             answer += statementList.get(i).indentedToString(level + 1);
