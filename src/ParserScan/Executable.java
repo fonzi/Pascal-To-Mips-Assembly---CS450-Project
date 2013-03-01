@@ -48,6 +48,9 @@ public class Executable
             System.out.println("THIS IS THE PARSER");
             System.out.println("--------------------"); 
             tree = parse.program();
+            System.out.println("--------------------");
+            System.out.println("THIS IS THE SYNTAX TREE");
+            System.out.println("--------------------");
             System.out.println(tree.indentedToString(0));
             
             

@@ -91,9 +91,10 @@ public class CompilerParser
     public Node declarations()
     {
         System.out.println("declerations");
-        Node answer = new DeclarationsNode();
+        Node answer=null;
         if (currentToken == Token.VAR)
         {
+            answer = new DeclarationsNode();
             
             match(currentToken.VAR);//match var
             ((DeclarationsNode)answer).setList(identifier_list());

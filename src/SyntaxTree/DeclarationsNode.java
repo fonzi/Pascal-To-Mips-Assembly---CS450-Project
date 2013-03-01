@@ -8,14 +8,15 @@ import java.util.ArrayList;
 //first in line
 public class DeclarationsNode extends Node
 {
+
     ArrayList<Node> list;
     Node right;
-    
-    public DeclarationsNode ()
+
+    public DeclarationsNode()
     {
         list = new ArrayList<Node>();
     }
-    
+
     public ArrayList getList()
     {
         return list;
@@ -35,13 +36,17 @@ public class DeclarationsNode extends Node
     {
         this.right = right;
     }
-    
+
     @Override
     public String indentedToString(int level)
     {
         String answer = " ";
         answer = super.indentedToString(level);
         answer += "Declarations " + this.list.toString() + "\n";
+        if (this.right != null)
+        {
+            answer += "" + this.right.indentedToString(level + 1) + "\n";
+        }
         return answer;
     }
-} 
+}
