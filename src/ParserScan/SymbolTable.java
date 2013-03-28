@@ -9,7 +9,10 @@ import java.util.Hashtable;
 
 public class SymbolTable extends Hashtable
 {
-	protected final Hashtable<String,Token> symbolTable= 
+    /**
+     * This is to keep the symbol table in a hashtable 
+     */
+    protected final Hashtable<String,Token> symbolTable= 
                 new Hashtable<String, Token>();
 	/**
 	 * no arguments are taken

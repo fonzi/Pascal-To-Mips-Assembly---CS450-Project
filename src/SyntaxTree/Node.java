@@ -9,6 +9,11 @@ public abstract class Node
 {   
     private String name;
     
+    /**
+     * 
+     * @param level
+     * @return
+     */
     public String indentedToString(int level)
     {
         String answer = "";
@@ -23,11 +28,19 @@ public abstract class Node
         return (answer);
     }
     
+    /**
+     * 
+     * @return
+     */
     public String getName()
     {
         return name;
     }
     
+    /**
+     * 
+     * @param setName
+     */
     public void setName(String setName)
     {
         this.name = setName;

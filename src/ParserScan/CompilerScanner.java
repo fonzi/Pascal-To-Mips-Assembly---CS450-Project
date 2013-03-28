@@ -284,21 +284,32 @@ public class CompilerScanner
     //0 is a lexeme
     //1 is not a lexeme
     //2 is error	
+    /**This is the state for IS_A_LEXEME**/
     public static final int IS_A_LEXEME = 0;
+    /**This is the state for IS_NOT_A_LEXEME**/
     public static final int IS_NOT_A_LEXEME = 1;
+    /**Thit is the State for IS_AN_ERROR**/
     public static final int IS_AN_ERROR = 2;
     //these are used to keep the next character pointer
     //file is used to locate the file from constructor
     //lexeme is used to build and object from tokens
     //token is of type Token to call symbol table
     //pushBack is to move the token pointer back if needed and to read
+    /**This global variable is for the argument that is passed in where the pas file is located**/
     protected File argument;
+    /**This is a stringBuilder to make the lexeme**/
     protected StringBuilder lexeme;
+    /**This is to keep the symbols**/
     protected Hashtable symbols;
+    /**This is to push the steram back**/
     protected PushbackReader pushBack;
+    /**This is to keep the token**/
     protected Token tokens;
+    /**This is to keep the attribute**/
     protected Object attribute;
+    /**This is to keep the line number of the pas file if error exist**/
     protected LineNumberReader lineNumRead;
+    /**This is to keep line number of pas file if error exist**/
     protected int lineNum;
 
     /**
@@ -359,6 +370,10 @@ public class CompilerScanner
         return this.tokens;
     }
 
+    /**
+     * 
+     * @return
+     */
     public int getLineCounter()
     {
         return this.lineNum;

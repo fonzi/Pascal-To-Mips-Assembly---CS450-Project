@@ -15,11 +15,38 @@ public class CompoundStatementNode extends Node
     ArrayList<Node> statementList;
     //second in line
     
+    /**
+     * 
+     */
     public CompoundStatementNode ()
     {
         statementList = new ArrayList<Node>();
     }
     
+    /**
+     * 
+     * @return
+     */
+    public ArrayList<Node> getStatementList()
+    {
+        return statementList;
+    }
+
+    /**
+     * 
+     * @param statementList
+     */
+    public void setStatementList(ArrayList<Node> statementList)
+    {
+        this.statementList = statementList;
+    }
+    
+    
+    /**
+     * 
+     * @param level
+     * @return
+     */
     @Override
     public String indentedToString( int level)
     {

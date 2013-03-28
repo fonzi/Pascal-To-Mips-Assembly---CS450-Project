@@ -1,6 +1,6 @@
 
 package CompilerScanner.ParserScan;
-import CompilerScanner.ParserScan.CompilerParser;
+import CompilerScanner.*;
 import CompilerScanner.SyntaxTree.Node;
 import java.io.File;
 /**
@@ -11,6 +11,11 @@ import java.io.File;
  */
 public class Executable 
 {
+    /**
+     * This is the main method, which will excecute all of the required classes
+     * and Packages for the compiler to be succesful
+     * @param args this keeps the file location for pas
+     */
     public static void main (String [] args)
 	{
             String fileLocation = args[0];

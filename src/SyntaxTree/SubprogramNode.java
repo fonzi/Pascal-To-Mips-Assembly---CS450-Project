@@ -18,58 +18,106 @@ public class SubprogramNode extends Node
     Node fourth;
     String code;
 
+    /**
+     * 
+     */
     public SubprogramNode(){}
 
+    /**
+     * 
+     * @return
+     */
     public String getCode()
     {
         return code;
     }
 
+    /**
+     * 
+     * @param code
+     */
     public void setCode(String code)
     {
         this.code = code;
     }
 
+    /**
+     * 
+     * @return
+     */
     public Node getFirst()
     {
         return first;
     }
 
+    /**
+     * 
+     * @param first
+     */
     public void setFirst(Node first)
     {
         this.first = first;
     }
 
+    /**
+     * 
+     * @return
+     */
     public Node getFourth()
     {
         return fourth;
     }
 
+    /**
+     * 
+     * @param fourth
+     */
     public void setFourth(Node fourth)
     {
         this.fourth = fourth;
     }
 
+    /**
+     * 
+     * @return
+     */
     public Node getSecond()
     {
         return second;
     }
 
+    /**
+     * 
+     * @param second
+     */
     public void setSecond(Node second)
     {
         this.second = second;
     }
 
+    /**
+     * 
+     * @return
+     */
     public Node getThird()
     {
         return third;
     }
 
+    /**
+     * 
+     * @param third
+     */
     public void setThird(Node third)
     {
         this.third = third;
     }
 
+    /**
+     * 
+     * @param level
+     * @return
+     */
     @Override
     public String indentedToString(int level)
     {
