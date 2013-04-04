@@ -69,7 +69,7 @@ public class DeclarationsNode extends Node
         answer += "Declarations " + this.list.toString() + "\n";
         if (this.right != null)
         {
-            answer += "" + this.right.indentedToString(level + 1) + "\n";
+            answer += "" + this.right.indentedToString(level + 1);
         }
         return answer;
     }

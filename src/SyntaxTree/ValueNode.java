@@ -16,6 +16,12 @@ public class ValueNode extends ExpressionNode
     {
         this.attribute = attribute;
     }
+
+    @Override
+    public String toString()
+    {
+        return "ValueNode{" + "attribute=" + attribute + '}';
+    }
     
 
     public String getAttribute()

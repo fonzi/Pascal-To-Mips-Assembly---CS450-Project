@@ -557,7 +557,7 @@ public class CompilerScanner
                     {
                         tokens = Token.INTEGER;
                     }
-                    else
+                    else 
                     {
                         tokens = Token.ID;
                     }

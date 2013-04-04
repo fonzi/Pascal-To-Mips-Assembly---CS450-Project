@@ -75,4 +75,11 @@ public class AssignmentStatement extends StatementNode
         }
         return answer;
     }
+
+    @Override
+    public String toString()
+    {
+        return "AssignmentStatement{" + "left=" + left + ", right=" + right + '}';
+    }
+    
 }

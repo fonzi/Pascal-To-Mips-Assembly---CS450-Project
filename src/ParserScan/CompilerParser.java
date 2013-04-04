@@ -38,6 +38,7 @@ public class CompilerParser
     {
         File input = new File(filename);
         Hashtable symbols = new SymbolTable();//need to use as token identifier
+        IdTable = new VariableSymbolTable();
         scanner = new CompilerScanner(input, symbols);
         scanner.nextToken();
         currentToken = scanner.getToken();
@@ -54,16 +55,19 @@ public class CompilerParser
     {
         Node answer;
         System.out.println("program");
-        match(currentToken.PROGRAM);//match program
+        match(Token.PROGRAM);//match program
         answer = new ProgramNode(currentToken);
-        match(currentToken.ID);//match id
-        match(currentToken.SEMI_COLON);//match ;
+        match(Token.ID);//match id
+        match(Token.SEMI_COLON);//match ;
         Node right = declarations();
         subprogram_declarations();
-        compound_statement();
-        match(currentToken.PERIOD);//match the .
+        Node left = null;
+        left = compound_statement();
+        ((ProgramNode)answer).setCompoundNode(left);
+        match(Token.PERIOD);//match the .
         System.out.println("CODE DONE :)");
         ((ProgramNode)answer).setDeclarationsNode(right);
+        
         return(answer);
     }
 
@@ -78,17 +82,16 @@ public class CompilerParser
         ArrayList answer = new ArrayList();
         answer.add(scanner.getLexeme());
         secondArg = new IdentifierInformation(scanner.getLexeme());
-        IdTable = new VariableSymbolTable();
         IdTable.put(scanner.getLexeme(), secondArg);
-        match(currentToken.ID);//match ID
-        
-        while (currentToken == Token.COMMA)
+
+        match(Token.ID);//match ID
+        if (currentToken == Token.COMMA)
         {
-            match(currentToken.COMMA);//match ,
+            match(Token.COMMA);//match ,
             answer.add(scanner.getLexeme());
             secondArg = new IdentifierInformation(scanner.getLexeme());
             IdTable.put(scanner.getLexeme(), secondArg);
-            match(currentToken.ID);//match ID
+            match(Token.ID);//match ID
         }
         return(answer);
     }
@@ -105,16 +108,21 @@ public class CompilerParser
         Node answer=null;
         
         if (currentToken == Token.VAR)
-        {
+        { 
+            match(Token.VAR);
+            Token type = null;
+            ArrayList iDList = null;
+            iDList = identifier_list();
+            match(Token.COLON);
+            type = type();
+            match(Token.SEMI_COLON);  
+            addToHash(type, iDList, IdTable);
+            Node dec = declarations();
             answer = new DeclarationsNode();
-            match(currentToken.VAR);//match var
-            ((DeclarationsNode)answer).setList(identifier_list());
-            match(currentToken.COLON);//match :
-            
-            type();
-            
-            match(currentToken.SEMI_COLON);//match ;
-            ((DeclarationsNode)answer).setRight(declarations());
+            ((DeclarationsNode)answer).setList(iDList);
+            //match :
+            //match ;       
+            ((DeclarationsNode)answer).setRight(dec);
         }
         return(answer);
     }
@@ -145,13 +153,13 @@ public class CompilerParser
         
         if (currentToken == Token.ARRAY)
         {
-            match(currentToken.ARRAY);//match array
-            match(currentToken.LEFT_SQUARE_BRACKET);//match [
-            match(currentToken.NUMBER);//match num
-            match(currentToken.COLON);//match :
-            match(currentToken.NUMBER);//match num
-            match(currentToken.RIGHT_SQUARE_BRACKET);//match ]
-            match(currentToken.OF);//match of
+            match(Token.ARRAY);//match array
+            match(Token.LEFT_SQUARE_BRACKET);//match [
+            match(Token.NUMBER);//match num
+            match(Token.COLON);//match :
+            match(Token.NUMBER);//match num
+            match(Token.RIGHT_SQUARE_BRACKET);//match ]
+            match(Token.OF);//match of
         }
         return standard_type();        
     }
@@ -162,17 +170,17 @@ public class CompilerParser
         Token token = null;
         
         System.out.println("standard_type");
-        
+        token = currentToken;
         if (currentToken == Token.INTEGER)
         {
             token = currentToken;
-            match(currentToken.INTEGER);//match num
+            match(Token.INTEGER);//match num
         }
         
         else if (currentToken == Token.REAL)
         {
             token = currentToken;
-            match(currentToken.REAL);//match real
+            match(Token.REAL);//match real
         }
         
         else
@@ -195,7 +203,7 @@ public class CompilerParser
         if (currentToken == Token.FUNCTION || currentToken == Token.PROCEDURE)
         {
             subprogram_declarations();
-            match(currentToken.SEMI_COLON);//match ;
+            match(Token.SEMI_COLON);//match ;
             answer = new SubprogramNode();
             subprogram_declarations();
         }
@@ -227,20 +235,20 @@ public class CompilerParser
         System.out.println("subprogram_head");
         if (currentToken == Token.FUNCTION)
         {
-            match(currentToken.FUNCTION);//match functions
-            match(currentToken.ID);//match id
+            match(Token.FUNCTION);//match functions
+            match(Token.ID);//match id
             arguments();
-            match(currentToken.COLON);//match ;
+            match(Token.COLON);//match ;
             standard_type();
-            match(currentToken.SEMI_COLON);//match ;
+            match(Token.SEMI_COLON);//match ;
         }
         
         else if (currentToken == Token.PROCEDURE)
         {
-            match(currentToken.PROCEDURE);//match procedure
-            match(currentToken.ID);//match id
+            match(Token.PROCEDURE);//match procedure
+            match(Token.ID);//match id
             arguments();
-            match(currentToken.SEMI_COLON);//match ;
+            match(Token.SEMI_COLON);//match ;
         }
         
         else
@@ -259,9 +267,9 @@ public class CompilerParser
         System.out.println("arguments");
         if (currentToken == Token.LEFT_PARENTHESIS)
         {
-            match(currentToken.LEFT_PARENTHESIS);//match (
+            match(Token.LEFT_PARENTHESIS);//match (
             parameter_list();
-            match(currentToken.RIGHT_PARENTHESIS);//match )
+            match(Token.RIGHT_PARENTHESIS);//match )
         }
         
         else
@@ -278,12 +286,12 @@ public class CompilerParser
     {
         System.out.println("parameter_list");
         identifier_list();
-        match(currentToken.COLON);//match :
+        match(Token.COLON);//match :
         type();
         
         if (currentToken == Token.SEMI_COLON)
         {
-            match(currentToken.SEMI_COLON);//match ;
+            match(Token.SEMI_COLON);//match ;
             parameter_list();
         }
     }
@@ -298,9 +306,10 @@ public class CompilerParser
     	Node answer = null;
         System.out.println("compound_statement");
         answer = new CompoundStatementNode();
-        match(currentToken.BEGIN);//match begin
-        optional_statements();
-        match(currentToken.END);//match end
+        match(Token.BEGIN);//match begin
+        //optional_statements();
+        ((CompoundStatementNode)answer).setStatementList(optional_statements());
+        match(Token.END);//match end
         return answer;
     }
 
@@ -311,8 +320,8 @@ public class CompilerParser
      */
     public ArrayList optional_statements()
     {
+        ArrayList listForOptions = null; 
         System.out.println("optional_statements");
-        
         if (currentToken == Token.ID
                 || currentToken == Token.BEGIN
                 || currentToken == Token.IF
@@ -320,13 +329,10 @@ public class CompilerParser
                 || currentToken == Token.READ
                 || currentToken == Token.WRITE)
         {
-            return statement_list();
-        }
-        
-        else
-        {
-            return null;
-        }
+            listForOptions = statement_list();
+            //return statement_list();
+        }        
+        return listForOptions;
     }
 
     /**
@@ -339,11 +345,11 @@ public class CompilerParser
         
         System.out.println("statement_list");
         statements.add(statement());
-        
+
         if (currentToken == Token.SEMI_COLON)
         {
-            match(currentToken.SEMI_COLON);//match ;
-            statement_list();
+            match(Token.SEMI_COLON);//match ;
+            statements.addAll(statement_list());
         }
         return statements;
     }
@@ -364,24 +370,22 @@ public class CompilerParser
         if (currentToken == Token.ID)
         {
             answer = new AssignmentStatement();
-            match(currentToken.ID);//match ID
-            if (currentToken == Token.LEFT_SQUARE_BRACKET)
+            //match(currentToken.ID);
+            secondArg = (IdentifierInformation)IdTable.get(scanner.getLexeme());
+            if (secondArg.getType() == Token.ARRAY 
+                    || secondArg.getType() == Token.REAL 
+                    || secondArg.getType() == Token.INTEGER)
             {
                 ((AssignmentStatement)answer).setLeft(variable());
-                match(currentToken.LEFT_SQUARE_BRACKET);//match := 
+                match(Token.COLON_EQUALS);//match := 
                 ((AssignmentStatement)answer).setRight(expression());
-            }//end checl [
-            else if (currentToken == Token.COLON_EQUALS)
-            {
-                ((AssignmentStatement)answer).setLeft(variable());
-                match(currentToken.COLON_EQUALS);//match := 
-                ((AssignmentStatement)answer).setRight(expression());
-            }
-            else if (currentToken == Token.LEFT_PARENTHESIS)
+            }//end check [
+            else if (secondArg.getReturn() == Token.PROCEDURE 
+                    || secondArg.getReturn() == Token.FUNCTION)
             {
                 //add answer later
                 procedure_statement();
-            }//end check (
+            }//end check [
         }//end check ID
         else if (currentToken == Token.BEGIN)
         {
@@ -390,19 +394,19 @@ public class CompilerParser
         else if (currentToken == Token.IF)
         {
             answer = new IfStatement();
-            match(currentToken.IF);//match IF
+            match(Token.IF);//match IF
             ((IfStatement)answer).setExpression(expression());
-            match(currentToken.THEN);//match then
+            match(Token.THEN);//match then
             ((IfStatement)answer).setStatement_1(statement());
-            match(currentToken.ELSE);//match else
+            match(Token.ELSE);//match else
             ((IfStatement)answer).setStatement_2(statement());
         }
         else if (currentToken == Token.WHILE)
         {
             answer = new WhileStatement();
-            match(currentToken.WHILE);//match IF
+            match(Token.WHILE);//match IF
             ((WhileStatement)answer).setExpression(expression());
-            match(currentToken.DO);//match then
+            match(Token.DO);//match then
             ((WhileStatement)answer).setStatement(statement());
         }
         //----------------------------------------//
@@ -410,17 +414,17 @@ public class CompilerParser
         //----------------------------------------//
         else if (currentToken == Token.READ)
         {
-            match(currentToken.READ);//match READ
-            match(currentToken.LEFT_PARENTHESIS);
-            match(currentToken.ID);//
-            match(currentToken.RIGHT_PARENTHESIS);
+            match(Token.READ);//match READ
+            match(Token.LEFT_PARENTHESIS);
+            match(Token.ID);//
+            match(Token.RIGHT_PARENTHESIS);
         }
         else if (currentToken == Token.WRITE)
         {
-            match(currentToken.WRITE);//match write
-            match(currentToken.LEFT_PARENTHESIS);
+            match(Token.WRITE);//match write
+            match(Token.LEFT_PARENTHESIS);
             expression();
-            match(currentToken.RIGHT_PARENTHESIS);
+            match(Token.RIGHT_PARENTHESIS);
         }
         return answer;
     }
@@ -434,16 +438,12 @@ public class CompilerParser
         Node answer = null;
         answer = new ValueNode(scanner.getLexeme());
         System.out.println("variable");
-        //match(currentToken.ID);//match id
+        match(Token.ID);//match id
         if (currentToken == Token.LEFT_SQUARE_BRACKET)
         {
-            match(currentToken.LEFT_SQUARE_BRACKET);//match [
+            match(Token.LEFT_SQUARE_BRACKET);//match [
             expression();
-            match(currentToken.RIGHT_SQUARE_BRACKET);//match ]
-        }
-        else
-        {
-            error();
+            match(Token.RIGHT_SQUARE_BRACKET);//match ]
         }
         return answer;
     }
@@ -456,12 +456,12 @@ public class CompilerParser
     public void procedure_statement()
     {
         System.out.println("procedure_statement");
-        match(currentToken.ID);//match ID
+        match(Token.ID);//match ID
         if (currentToken == Token.LEFT_PARENTHESIS)
         {
-            match(currentToken.LEFT_PARENTHESIS);//match (
+            match(Token.LEFT_PARENTHESIS);//match (
             expression_list();
-            match(currentToken.RIGHT_PARENTHESIS);//match )
+            match(Token.RIGHT_PARENTHESIS);//match )
         }
         else
         {
@@ -479,7 +479,7 @@ public class CompilerParser
         expression();
         if (currentToken == Token.COMMA)
         {
-            match(currentToken.COMMA);//match ,
+            match(Token.COMMA);//match ,
             expression_list();
         }
     }
@@ -501,7 +501,7 @@ public class CompilerParser
         {
             exp = answer;
             answer = new Expression(currentToken);
-            match(currentToken.EQUAL);//match whatever the relop
+            match(Token.EQUAL);//match whatever the relop
             ((Expression)answer).setLeft(exp);
             ((Expression)answer).setRight(simple_expression());
         }
@@ -509,7 +509,7 @@ public class CompilerParser
         {
             exp = answer;
             answer = new Expression(currentToken);
-            match(currentToken.LESS_THAN);//match less than
+            match(Token.LESS_THAN);//match less than
             ((Expression)answer).setLeft(exp);
             ((Expression)answer).setRight(simple_expression());
         }
@@ -517,7 +517,7 @@ public class CompilerParser
         {
             exp = answer;
             answer = new Expression(currentToken);
-            match(currentToken.GREATER_THAN);//match >
+            match(Token.GREATER_THAN);//match >
             ((Expression)answer).setLeft(exp);
             ((Expression)answer).setRight(simple_expression());
         }
@@ -525,7 +525,7 @@ public class CompilerParser
         {
             exp = answer;
             answer = new Expression(currentToken);
-            match(currentToken.GREATER_THAN_EQUAL);//match >=
+            match(Token.GREATER_THAN_EQUAL);//match >=
             ((Expression)answer).setLeft(exp);
             ((Expression)answer).setRight(simple_expression());
         }
@@ -533,7 +533,7 @@ public class CompilerParser
         {
             exp = answer;
             answer = new Expression(currentToken);
-            match(currentToken.LESS_THAN_EQUAL);
+            match(Token.LESS_THAN_EQUAL);
             ((Expression)answer).setLeft(exp);
             ((Expression)answer).setRight(simple_expression());
         }
@@ -541,7 +541,7 @@ public class CompilerParser
         {
             exp = answer;
             answer = new Expression(currentToken);
-            match(currentToken.NOT_EQUAL);
+            match(Token.NOT_EQUAL);
             ((Expression)answer).setLeft(exp);
             ((Expression)answer).setRight(simple_expression());
         }
@@ -565,7 +565,14 @@ public class CompilerParser
             sign();
         }
         answer = term();
-        simple_part();
+        if (currentToken == Token.PLUS || currentToken == Token.MINUS || currentToken == Token.OR)
+        {
+            Node simpleLeft = answer;
+            answer = new OperationsNode(currentToken);
+            Node simpleRight = simple_part();
+            ((OperationsNode)answer).setLeft(simpleLeft);
+            ((OperationsNode)answer).setRight(simpleRight);        
+        }        
         return answer;
     }
 
@@ -578,23 +585,29 @@ public class CompilerParser
     {
         Node answer  = null;
         System.out.println("simple_part");
+        Node term = null;
+        Node simple_part = null;
         if (currentToken == Token.PLUS)
         {
-            match(currentToken.PLUS);//match addop
-            term();
-            simple_part();
+            answer = new OperationsNode(currentToken);
+            match(Token.PLUS);//match addop
+            term = term();
+            simple_part = simple_part();
         }
         else if (currentToken == Token.MINUS)
         {
-            match(currentToken.MINUS);//match minus
-            term();
-            simple_part();
+            
+            answer = new OperationsNode(currentToken);
+            match(Token.MINUS);//match addop
+            term = term();
+            simple_part = simple_part();
         }
         else if (currentToken == Token.OR)
         {
-            match(currentToken.OR);//match OR
-            term();
-            simple_part();
+            answer = new OperationsNode(currentToken);
+            match(Token.OR);//match addop
+            term = term();
+            simple_part = simple_part();
         }
         return answer;
     }
@@ -607,8 +620,13 @@ public class CompilerParser
     {
         Node answer = null;
         System.out.println("term");
-        factor();
-        term_part();
+        answer = factor();
+        Node temp = term_part();
+        if(temp != null)
+        {
+            Node temp1 = answer;
+            answer = new OperationsNode(currentToken);
+        }
         return answer;
     }
 
@@ -616,37 +634,39 @@ public class CompilerParser
      * Term part checks if currentToken is "*", "/" , "mod", or "and".
      * If so then it calls factor and term_part else just error 
      */
-    public void term_part()
+    public Node term_part()
     {
+        Node answer = null;
         System.out.println("term_part");
         if (currentToken == Token.MULTIPLY)
         {
-            match(currentToken.MULTIPLY);//match *
-            factor();
-            term_part();
+            answer = new OperationsNode(currentToken);
+            match(Token.MULTIPLY);//match *
+            ((OperationsNode)answer).setLeft(factor());
+            ((OperationsNode)answer).setRight(term_part());
         }
         else if (currentToken == Token.DIVIDE)
         {
-            match(currentToken.DIVIDE);//match /
-            factor();
-            term_part();
+            answer = new OperationsNode(currentToken);
+            match(Token.DIVIDE);//match /
+            ((OperationsNode)answer).setLeft(factor());
+            ((OperationsNode)answer).setRight(term_part());
         }
         else if (currentToken == Token.MOD)
         {
-            match(currentToken.MOD);//match mod
-            factor();
-            term_part();
+            answer = new OperationsNode(currentToken);
+            match(Token.MOD);//match /
+            ((OperationsNode)answer).setLeft(factor());
+            ((OperationsNode)answer).setRight(term_part());
         }
         else if (currentToken == Token.AND)
         {
-            match(currentToken.AND);//match and
-            factor();
-            term_part();
+            answer = new OperationsNode(currentToken);
+            match(Token.AND);//match /
+            ((OperationsNode)answer).setLeft(factor());
+            ((OperationsNode)answer).setRight(term_part());
         }
-        else
-        {
-            return;
-        }
+        return answer;
     }
 
     /**
@@ -657,48 +677,52 @@ public class CompilerParser
      * checks if token = number
      * if yes then just match and call expresssion
      */
-    public void factor()
+    public Node factor()
     {
+        Node answer = null;
         System.out.println("factor");
         if (currentToken == Token.ID)
         {
-            match(currentToken.ID);//match ID
+            match(Token.ID);//match ID
             if (currentToken == Token.LEFT_SQUARE_BRACKET)
             {
-                match(currentToken.LEFT_SQUARE_BRACKET);//match [
-                expression();
-                match(currentToken.RIGHT_SQUARE_BRACKET);//match ]
+                match(Token.LEFT_SQUARE_BRACKET);//match [
+                answer = expression();
+                match(Token.RIGHT_SQUARE_BRACKET);//match ]
             }
             else if (currentToken == Token.LEFT_PARENTHESIS)
             {
-                match(currentToken.LEFT_PARENTHESIS);//match (
+                match(Token.LEFT_PARENTHESIS);//match (
                 expression_list();
-                match(currentToken.RIGHT_PARENTHESIS);//match )
+                match(Token.RIGHT_PARENTHESIS);//match )
             }
             else if (currentToken == Token.NUMBER)
             {
-                match(currentToken.NUMBER);
+                answer = new ValueNode(scanner.getLexeme());
+                match(Token.NUMBER);
             }
         }//end ID check
         else if (currentToken == Token.NUMBER)
         {
-            match(currentToken.NUMBER);//match number
+            answer = new ValueNode(scanner.getLexeme());
+            match(Token.NUMBER);//match number
         }//end number check
         else if (currentToken == Token.LEFT_PARENTHESIS)
         {
-            match(currentToken.LEFT_PARENTHESIS);//match (
+            match(Token.LEFT_PARENTHESIS);//match (
             expression_list();
-            match(currentToken.RIGHT_PARENTHESIS);//match )
+            match(Token.RIGHT_PARENTHESIS);//match )
         }//end ( check
         else if (currentToken == Token.NOT)
         {
-            match(currentToken.NOT);//match not
+            match(Token.NOT);//match not
             factor();
         }//end not check
         else
         {
             error();
         }
+        return answer;
     }
 
     /**
@@ -711,11 +735,11 @@ public class CompilerParser
         System.out.println("sign");
         if (currentToken == Token.PLUS)
         {
-            match(currentToken.PLUS);//match + 
+            match(Token.PLUS);//match + 
         }
         else if (currentToken == Token.MINUS)
         {
-            match(currentToken.MINUS);//match - 
+            match(Token.MINUS);//match - 
         }
         else
         {
