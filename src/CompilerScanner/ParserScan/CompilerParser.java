@@ -22,8 +22,9 @@ public class CompilerParser
     private CompilerScanner scanner;
     /** This private Global variable is of Type Token*/
     private Token currentToken;
-    /**This private Global Variable is to keep the VariableSymbolTable**/
-    private VariableSymbolTable IdTable;
+    /**This private Global Variabl        IdTable = new VariableSymbolTable();//will need to change this for the VariableSymbols is no loner extending hashtable
+e is to keep the VariableSymbolTable**/
+    protected VariableSymbolTable IdTable;
     /**This private Global Variable is to keep the IdentifierInfromation for the second argument of IdTable**/
     private IdentifierInformation secondArg;
 
@@ -82,7 +83,7 @@ public class CompilerParser
         ArrayList answer = new ArrayList();
         answer.add(scanner.getLexeme());
         secondArg = new IdentifierInformation(scanner.getLexeme());
-        IdTable.put(scanner.getLexeme(), secondArg);
+        IdTable.add(scanner.getLexeme(), secondArg);
 
         match(Token.ID);//match ID
         if (currentToken == Token.COMMA)
@@ -90,7 +91,7 @@ public class CompilerParser
             match(Token.COMMA);//match ,
             answer.add(scanner.getLexeme());
             secondArg = new IdentifierInformation(scanner.getLexeme());
-            IdTable.put(scanner.getLexeme(), secondArg);
+            IdTable.add(scanner.getLexeme(), secondArg);
             match(Token.ID);//match ID
         }
         return(answer);
@@ -141,8 +142,9 @@ public class CompilerParser
        {
            IdentifierInformation idsInfo;
            String name = (String) list.get(i);
-           idsInfo = (IdentifierInformation)ids.get(name);
+           idsInfo = (IdentifierInformation)ids.variableTable.get(name);
            idsInfo.setType(id);
+    
        }
     }
 
@@ -380,7 +382,7 @@ public class CompilerParser
         {
             answer = new AssignmentStatement();
             
-            secondArg = (IdentifierInformation)IdTable.get(scanner.getLexeme());
+            secondArg = (IdentifierInformation)IdTable.variableTable.get(scanner.getLexeme());
             if (secondArg.getType() == Token.ARRAY 
                     || secondArg.getType() == Token.REAL 
                     || secondArg.getType() == Token.INTEGER)

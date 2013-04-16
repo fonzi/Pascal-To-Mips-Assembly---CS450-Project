@@ -324,7 +324,7 @@ public class CompilerScanner
     public CompilerScanner(File fileLocation, Hashtable table)
     {
         this.argument = fileLocation;
-        this.symbols = table;
+        //this.symbols = table;
         this.lineNum = 0;
         try
         {

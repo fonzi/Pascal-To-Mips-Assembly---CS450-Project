@@ -49,13 +49,21 @@ public class CodeGenerator
     {
         String nodeCode = null;
         
-        if(node instanceof OperationsNode)
+        if (node instanceof OperationsNode)
         {
             nodeCode = writeCode((OperationsNode)node, register);
         }
-        else if (node instanceof AssignmentStatement)
+        if (node instanceof AssignmentStatement)
         {
             nodeCode = writeCode((AssignmentStatement)node, register);
+        }
+        if (node instanceof IfStatement)
+        {
+            nodeCode = writeCode((IfStatement)node, register);
+        }
+        if (node instanceof WhileStatement)
+        {
+            nodeCode = writeCode((WhileStatement)node, register);
         }
         
         return(nodeCode);
@@ -85,16 +93,49 @@ public class CodeGenerator
         }
         if(kindOfOp == Token.MULTIPLY)
         {
-            code += "mult    "+leftRegister+
-                    ",    "+rightRegister + "\n";
+            code += "mult    "+leftRegister+",    "+rightRegister + "\n";
             code += "mflo " + resultRegister;
         }
         if(kindOfOp == Token.DIVIDE)
         {
-            code += "div    " +leftRegister+
-                    ",    "+rightRegister +"\n";
+            code += "div    " +leftRegister+",    "+rightRegister +"\n";
             code += "mflo "+ resultRegister;
         }
+        if(kindOfOp == Token.AND)
+        {
+            code += "and    "+leftRegister+",    "+rightRegister+"\n";
+            code += "$d " + resultRegister;
+        }
+        if(kindOfOp == Token.OR)
+        {
+            code += "or    "+leftRegister+",    "+rightRegister+"\n";
+            code += "$d " + resultRegister;
+        }
+        if(kindOfOp == Token.LESS_THAN)
+        {
+            code += "slt    "+leftRegister+",    "+rightRegister+"\n";
+            code += "$d    "+resultRegister;
+        }
+        
+        //this is wrong
+        if(kindOfOp == Token.GREATER_THAN)
+        {
+            code += "bgt    "+leftRegister+",    "+rightRegister+"\n";
+            code += "$s   "+resultRegister;
+        }
+        return (code);
+    }
+   
+    public String writeCode(IfStatement ifNode, String resultRegister)
+    {      
+        String code = "";
+        
+        return (code);
+    }
+    
+    public String writeCode(WhileStatement whileNode, String resultRegister)
+    {
+        String code = "";
         return (code);
     }
 }

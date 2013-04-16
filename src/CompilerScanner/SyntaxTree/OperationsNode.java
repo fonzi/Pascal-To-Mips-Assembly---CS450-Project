@@ -3,7 +3,6 @@
  * and open the template in the editor.
  */
 package CompilerScanner.SyntaxTree;
-import CompilerScanner.*;
 import CompilerScanner.ParserScan.Token;
 
 /**

@@ -1,7 +1,9 @@
 
 package CompilerScanner.ParserScan;
+import CodeGeneration.CodeGenerator;
 import CompilerScanner.*;
 import CompilerScanner.SyntaxTree.Node;
+import CompilerScanner.SyntaxTree.VariableSymbolTable;
 import java.io.File;
 /**
  * Executable is the main of the compiler
@@ -29,6 +31,7 @@ public class Executable
             SymbolTable table = new SymbolTable();
             CompilerScanner scan = new CompilerScanner(file,table);
             CompilerParser parse = new CompilerParser(fileName);
+            CodeGenerator code = new CodeGenerator();
             Node tree;
             //---------------------------------------------------------------//
             //                          This while loop is for               //
@@ -57,6 +60,16 @@ public class Executable
             System.out.println("--------------------");
             System.out.println(tree.indentedToString(0));
             
+            System.out.println("--------------------");
+            System.out.println("THE HASH TABLE");
+            System.out.println("--------------------");
+            System.out.println(parse.IdTable.variableTable);
+            
+            
+            System.out.println("--------------------");
+            System.out.println("THE MIPS CODE");
+            System.out.println("--------------------");
+            System.out.println(code.writeCodeForRoot(tree));
             
 	}//end main
 }

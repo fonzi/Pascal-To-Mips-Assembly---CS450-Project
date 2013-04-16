@@ -28,7 +28,7 @@ public class ValueNode extends ExpressionNode
     @Override
     public String toString()
     {
-        return "ValueNode{" + "attribute=" + attribute + '}';
+        return "ValueNode{" + "attribute=" + attribute + "}";
     }
     
 
