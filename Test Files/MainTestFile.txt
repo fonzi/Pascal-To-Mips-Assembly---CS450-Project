@@ -1,0 +1,20 @@
+program foo2;
+var i : real;
+var z : integer;
+var x : integer;
+begin
+
+if (i > 0)
+then
+i := 4
+else
+i := 10;
+
+while (i>5) do
+i := 21;
+
+i := 1 + 3;
+z := 6 - 4;
+{comment parser should ignore}
+i := 1 + 5
+end.
