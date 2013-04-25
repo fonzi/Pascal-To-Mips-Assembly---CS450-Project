@@ -5,8 +5,8 @@
 package CompilerScanner.SyntaxTree;
 
 /**
- *
- * @author fonzi
+ * This will take care of the nodes for if statement
+ * @author Alfonso Vazquez
  */
 public class IfStatement extends StatementNode
 {
@@ -15,8 +15,8 @@ public class IfStatement extends StatementNode
     private Node statement_2;
 
     /**
-     * 
-     * @return
+     * Gets the expression
+     * @return expression
      */
     public Node getExpression()
     {
@@ -24,7 +24,7 @@ public class IfStatement extends StatementNode
     }
 
     /**
-     * 
+     * sets the expression
      * @param expression
      */
     public void setExpression(Node expression)
@@ -33,8 +33,8 @@ public class IfStatement extends StatementNode
     }
 
     /**
-     * 
-     * @return
+     * Gets the Statement 1 
+     * @return statement 1 
      */
     public Node getStatement_1()
     {
@@ -42,7 +42,7 @@ public class IfStatement extends StatementNode
     }
 
     /**
-     * 
+     * Sets the statement 1
      * @param statement_1
      */
     public void setStatement_1(Node statement_1)
@@ -51,8 +51,8 @@ public class IfStatement extends StatementNode
     }
 
     /**
-     * 
-     * @return
+     * Gets the Statement 2
+     * @return statement 2
      */
     public Node getStatement_2()
     {
@@ -60,7 +60,7 @@ public class IfStatement extends StatementNode
     }
 
     /**
-     * 
+     * Sets the statement 2
      * @param statement_2
      */
     public void setStatement_2(Node statement_2)
@@ -68,9 +68,9 @@ public class IfStatement extends StatementNode
         this.statement_2 = statement_2;
     }
     /**
-     * 
+     * Does the indented toString of the tree, 
      * @param level
-     * @return
+     * @return returns the node level of the tree of type IF
      */
     @Override
     public String indentedToString( int level)

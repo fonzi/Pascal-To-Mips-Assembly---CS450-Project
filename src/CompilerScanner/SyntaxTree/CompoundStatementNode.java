@@ -7,7 +7,7 @@ package CompilerScanner.SyntaxTree;
 import java.util.ArrayList;
 /**
  * Use array list to contain 
- * @author fonzi
+ * @author Alfonso Vazquez
  */
 public class CompoundStatementNode extends Node
 {

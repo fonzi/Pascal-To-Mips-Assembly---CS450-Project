@@ -1,13 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package CompilerScanner.SyntaxTree;
 import CompilerScanner.ParserScan.Token;
 
 /**
- *
- * @author fonzi
+ * This calls keeps the OperationNode level. It extends ExpressionNode
+ * @author Alfonso Vazquez
  */
 public class OperationsNode extends ExpressionNode
 {
@@ -16,7 +12,7 @@ public class OperationsNode extends ExpressionNode
     Token operation;
     
     /**
-     * 
+     * This is to set token 
      * @param token
      */
     public OperationsNode(Token token)
@@ -25,8 +21,8 @@ public class OperationsNode extends ExpressionNode
     }
 
     /**
-     * 
-     * @return
+     * This is to get left of the operation
+     * @return left 
      */
     public Node getLeft()
     {
@@ -34,7 +30,7 @@ public class OperationsNode extends ExpressionNode
     }
 
     /**
-     * 
+     *  This sets the left
      * @param left
      */
     public void setLeft(Node left)
@@ -43,8 +39,8 @@ public class OperationsNode extends ExpressionNode
     }
 
     /**
-     * 
-     * @return
+     * This gets teh Operation of token
+     * @return token called operation
      */
     public Token getOperation()
     {
@@ -52,7 +48,7 @@ public class OperationsNode extends ExpressionNode
     }
 
     /**
-     * 
+     * Sets the operations
      * @param operation
      */
     public void setOperation(Token operation)
@@ -61,7 +57,7 @@ public class OperationsNode extends ExpressionNode
     }
 
     /**
-     * 
+     * Gets the right of the node
      * @return
      */
     public Node getRight()
@@ -70,14 +66,16 @@ public class OperationsNode extends ExpressionNode
     }
 
     /**
-     * 
+     * sets the right of the Node
      * @param right
      */
     public void setRight(Node right)
     {
         this.right = right;
     }
-    
+    /**
+     * This is to keep the level of the Syntax Tree
+     */
     @Override
     public String indentedToString( int level)
     {

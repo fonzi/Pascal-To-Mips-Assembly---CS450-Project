@@ -44,8 +44,8 @@ public class ProgramNode extends Node
     }
 
     /**
-     * 
-     * @return
+     * This gets eth compoundNode 
+     * @return returns the compoundNode
      */
     public Node getCompoundNode()
     {
@@ -53,7 +53,7 @@ public class ProgramNode extends Node
     }
 
     /**
-     * 
+     * This sets the compoundNode 
      * @param compoundNode
      */
     public void setCompoundNode(Node compoundNode)
@@ -62,8 +62,8 @@ public class ProgramNode extends Node
     }
 
     /**
-     * 
-     * @return
+     * This gets the declarationsNode
+     * @return declarationsNode
      */
     public Node getDeclarationsNode()
     {
@@ -71,7 +71,7 @@ public class ProgramNode extends Node
     }
 
     /**
-     * 
+     * Sets the declarationsNode 
      * @param declarationsNode
      */
     public void setDeclarationsNode(Node declarationsNode)
@@ -80,7 +80,7 @@ public class ProgramNode extends Node
     }
 
     /**
-     * 
+     * Gets the subprogramNode
      * @return
      */
     public Node getSubprogram()
@@ -89,7 +89,7 @@ public class ProgramNode extends Node
     }
 
     /**
-     * 
+     * Sets the subprogram
      * @param subprogram
      */
     public void setSubprogram(Node subprogram)
@@ -98,7 +98,7 @@ public class ProgramNode extends Node
     }
     
     /**
-     * 
+     * This is to keep the level of the Program. 
      * @param level
      * @return returns the level of the tree display. 
      */

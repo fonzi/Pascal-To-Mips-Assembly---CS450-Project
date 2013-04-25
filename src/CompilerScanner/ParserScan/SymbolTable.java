@@ -39,8 +39,8 @@ public class SymbolTable extends Hashtable
 		symbolTable.put("and", Token.AND);
 		symbolTable.put("real", Token.REAL);
 		symbolTable.put("integer", Token.INTEGER);
-                symbolTable.put("read", Token.READ);
-                symbolTable.put("write", Token.WRITE);
+        symbolTable.put("read", Token.READ);
+        symbolTable.put("write", Token.WRITE);
 		//symbolTable.put("id", Token.ID);
 		
 		symbolTable.put(";", Token.SEMI_COLON);

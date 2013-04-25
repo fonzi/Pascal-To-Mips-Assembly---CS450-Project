@@ -6,13 +6,11 @@
  */
 package CompilerScanner.ParserScan;
 /**
- * 
- * @author fonzi
+ * This is to keep the Reserved words of the grammar, this an enumartion.
+ * @author Alfonso Vazquez
  */
 public enum Token 
-{
-	
-	
+{	
     //Reserved Words
     IF,
     THEN,

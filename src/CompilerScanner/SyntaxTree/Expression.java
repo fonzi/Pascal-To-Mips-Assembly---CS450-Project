@@ -3,10 +3,10 @@
  * and open the template in the editor.
  */
 package CompilerScanner.SyntaxTree;
-import CompilerScanner.ParserScan.*;
+import CompilerScanner.ParserScan.Token;
 /**
- *
- * @author fonzi
+ * This class is Expression, which extends ExpressionNode
+ * @author Alfonso Vazquez
  */
 public class Expression extends ExpressionNode
 {
@@ -15,7 +15,7 @@ public class Expression extends ExpressionNode
     private Node left;
     
     /**
-     * 
+     * This is a constructor to keep attribute
      * @param attr
      */
     public Expression(Token attr)
@@ -23,6 +23,7 @@ public class Expression extends ExpressionNode
         this.attribute = attr;
     }
     /**
+     * This gets the Token 
      * @return the attribute
      */
     public Token getAttribute()
@@ -30,6 +31,7 @@ public class Expression extends ExpressionNode
         return attribute;
     }
     /**
+     * Sets the attribute 
      * @param attribute the attribute to set
      */
     public void setAttribute(Token attribute)
@@ -37,6 +39,7 @@ public class Expression extends ExpressionNode
         this.attribute = attribute;
     }
     /**
+     * Gets the right side of the Node
      * @return the right
      */
     public Node getRight()
@@ -44,6 +47,7 @@ public class Expression extends ExpressionNode
         return right;
     }
     /**
+     * Sets the right side of the Node
      * @param right the right to set
      */
     public void setRight(Node right)
@@ -51,6 +55,7 @@ public class Expression extends ExpressionNode
         this.right = right;
     }
     /**
+     * Gets the left side of the Node
      * @return the left
      */
     public Node getLeft()
@@ -58,6 +63,7 @@ public class Expression extends ExpressionNode
         return left;
     }
     /**
+     * Sets the left side of the Node
      * @param left the left to set
      */
     public void setLeft(Node left)
@@ -65,9 +71,9 @@ public class Expression extends ExpressionNode
         this.left = left;
     }
     /**
-     * 
+     * Creates the indentedToString one level lower
      * @param level
-     * @return
+     * @return retuns the level of the tree
      */
     @Override
     public String indentedToString(int level)

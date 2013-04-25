@@ -1,13 +1,15 @@
 package CodeGeneration;
 
 import CompilerScanner.ParserScan.Token;
-import CompilerScanner.SyntaxTree.*;
-
-import java.lang.StringBuilder;
+import CompilerScanner.SyntaxTree.AssignmentStatement;
+import CompilerScanner.SyntaxTree.IfStatement;
+import CompilerScanner.SyntaxTree.Node;
+import CompilerScanner.SyntaxTree.OperationsNode;
+import CompilerScanner.SyntaxTree.WhileStatement;
 
 /**
  * This class will create cde for the Syntax Tree 
- * @author fonzi
+ * @author Alfonso Vazquez
  */
 public class CodeGenerator
 {
@@ -16,9 +18,9 @@ public class CodeGenerator
     private int currentTRegister = 0;
     
     /**
-     * 
+     * This method takes the input of the tree to start generating code
      * @param root
-     * @return
+     * @return the actual code for MIPS emulator
      */
     public String writeCodeForRoot(Node root)
     {
@@ -40,10 +42,10 @@ public class CodeGenerator
     }
     
     /**
-     * 
+     * This is to write the code if the node is an instance of a type of node
      * @param node
      * @param register
-     * @return
+     * @return returns the instance of code
      */
     public String writeCode(Node node, String register)
     {
@@ -68,7 +70,13 @@ public class CodeGenerator
         
         return(nodeCode);
     }
-    
+    /**
+     * This is to write the code along with the T registers, from the operationNode and the resultRegister
+     * This will keep the count of how many registers are needed from the hashtable 
+     * @param opNode
+     * @param resultRegister
+     * @return returns the code along with the tregisters in order.
+     */
     public String writeCode(OperationsNode opNode, String resultRegister)
     {
         String code = "";
@@ -126,6 +134,12 @@ public class CodeGenerator
         return (code);
     }
    
+    /**
+     * This should check if the node passed in is of type if 
+     * @param ifNode
+     * @param resultRegister
+     * @return the if code for mips
+     */
     public String writeCode(IfStatement ifNode, String resultRegister)
     {      
         String code = "";
@@ -133,6 +147,12 @@ public class CodeGenerator
         return (code);
     }
     
+    /**
+     * This should check if the node passed in is of type while
+     * @param whileNode
+     * @param resultRegister
+     * @return the while code for mips
+     */
     public String writeCode(WhileStatement whileNode, String resultRegister)
     {
         String code = "";

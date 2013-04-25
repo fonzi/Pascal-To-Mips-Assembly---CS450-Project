@@ -1,12 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package CompilerScanner.SyntaxTree;
 
 /**
- *
- * @author fonzi
+ * This is to keep the whileStatements. it extends StatemetnNode
+ * @author Alfonso Vazquez
  */
 public class WhileStatement extends StatementNode
 {
@@ -14,8 +10,8 @@ public class WhileStatement extends StatementNode
     private Node statement;
 
     /**
-     * 
-     * @return
+     * This returns expression 
+     * @return node called expression
      */
     public Node getExpression()
     {
@@ -23,7 +19,7 @@ public class WhileStatement extends StatementNode
     }
 
     /**
-     * 
+     * This sets the Expression node
      * @param expression
      */
     public void setExpression(Node expression)
@@ -32,7 +28,7 @@ public class WhileStatement extends StatementNode
     }
 
     /**
-     * 
+     * This gets the statement
      * @return
      */
     public Node getStatement()
@@ -41,7 +37,7 @@ public class WhileStatement extends StatementNode
     }
 
     /**
-     * 
+     * This sets the statement
      * @param statement
      */
     public void setStatement(Node statement)
@@ -49,9 +45,9 @@ public class WhileStatement extends StatementNode
         this.statement = statement;
     }
     /**
-     * 
+     * This keeps the level of the while statement. 
      * @param level
-     * @return
+     * @return returns the level 
      */
     @Override
     public String indentedToString( int level)

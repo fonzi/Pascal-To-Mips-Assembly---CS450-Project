@@ -10,7 +10,7 @@ public abstract class Node
     private String name;
     
     /**
-     * 
+     * This is the level of the node, so each time the tree goes down deeper the more it will add "--"
      * @param level
      * @return
      */
@@ -29,8 +29,8 @@ public abstract class Node
     }
     
     /**
-     * 
-     * @return
+     * Gets the name
+     * @return name
      */
     public String getName()
     {
@@ -38,8 +38,8 @@ public abstract class Node
     }
     
     /**
-     * 
-     * @param setName
+     * Sets the name 
+     * @param setName 
      */
     public void setName(String setName)
     {

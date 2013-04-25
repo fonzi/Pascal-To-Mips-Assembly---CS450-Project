@@ -5,8 +5,8 @@
 package CompilerScanner.SyntaxTree;
 
 /**
- *
- * @author fonzi
+ * This takes care of the Subprogram nodes for the tree
+ * @author Alfonso Vazquez
  */
 //third in line
 public class SubprogramNode extends Node
@@ -19,12 +19,12 @@ public class SubprogramNode extends Node
     String code;
 
     /**
-     * 
+     * Empty 
      */
     public SubprogramNode(){}
 
     /**
-     * 
+     * Gets the code
      * @return
      */
     public String getCode()
@@ -33,7 +33,7 @@ public class SubprogramNode extends Node
     }
 
     /**
-     * 
+     * Sets the code
      * @param code
      */
     public void setCode(String code)
@@ -42,7 +42,7 @@ public class SubprogramNode extends Node
     }
 
     /**
-     * 
+     * Gets the first
      * @return
      */
     public Node getFirst()
@@ -51,7 +51,7 @@ public class SubprogramNode extends Node
     }
 
     /**
-     * 
+     * Sets the first
      * @param first
      */
     public void setFirst(Node first)
@@ -60,7 +60,7 @@ public class SubprogramNode extends Node
     }
 
     /**
-     * 
+     * Gets the fourth 
      * @return
      */
     public Node getFourth()
@@ -69,7 +69,7 @@ public class SubprogramNode extends Node
     }
 
     /**
-     * 
+     * Sets the fourth 
      * @param fourth
      */
     public void setFourth(Node fourth)
@@ -78,7 +78,7 @@ public class SubprogramNode extends Node
     }
 
     /**
-     * 
+     * Gets the second
      * @return
      */
     public Node getSecond()
@@ -87,7 +87,7 @@ public class SubprogramNode extends Node
     }
 
     /**
-     * 
+     * sets the second
      * @param second
      */
     public void setSecond(Node second)
@@ -96,7 +96,7 @@ public class SubprogramNode extends Node
     }
 
     /**
-     * 
+     * gets the third
      * @return
      */
     public Node getThird()
@@ -105,7 +105,7 @@ public class SubprogramNode extends Node
     }
 
     /**
-     * 
+     * sets the third
      * @param third
      */
     public void setThird(Node third)
@@ -114,7 +114,7 @@ public class SubprogramNode extends Node
     }
 
     /**
-     * 
+     * Prints out the node of the subprogram. 
      * @param level
      * @return
      */

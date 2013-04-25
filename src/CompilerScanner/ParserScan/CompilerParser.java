@@ -1,11 +1,21 @@
 package CompilerScanner.ParserScan;
 
 import java.io.File;
-import java.util.Hashtable;
-import CompilerScanner.SyntaxTree.*;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import CompilerScanner.SyntaxTree.AssignmentStatement;
+import CompilerScanner.SyntaxTree.CompoundStatementNode;
+import CompilerScanner.SyntaxTree.DeclarationsNode;
+import CompilerScanner.SyntaxTree.IdentifierInformation;
+import CompilerScanner.SyntaxTree.IfStatement;
+import CompilerScanner.SyntaxTree.Node;
+import CompilerScanner.SyntaxTree.OperationsNode;
+import CompilerScanner.SyntaxTree.ProgramNode;
+import CompilerScanner.SyntaxTree.SubprogramNode;
+import CompilerScanner.SyntaxTree.ValueNode;
+import CompilerScanner.SyntaxTree.VariableSymbolTable;
+import CompilerScanner.SyntaxTree.WhileStatement;
 
-//do what veerav thaught me with subprogram declarations and compound statements. 
 
 /**
  * A Parser that takes a read in file from CompilerScanner
@@ -120,9 +130,7 @@ e is to keep the VariableSymbolTable**/
             addToHash(type, iDList, IdTable);
             Node dec = declarations();
             answer = new DeclarationsNode();
-            ((DeclarationsNode)answer).setList(iDList);
-            //match :
-            //match ;       
+            ((DeclarationsNode)answer).setList(iDList);  
             ((DeclarationsNode)answer).setRight(dec);
         }
         return(answer);
@@ -142,7 +150,8 @@ e is to keep the VariableSymbolTable**/
        {
            IdentifierInformation idsInfo;
            String name = (String) list.get(i);
-           idsInfo = (IdentifierInformation)ids.variableTable.get(name);
+           //add this to VariableSymbolTable method
+           idsInfo = (IdentifierInformation)ids.getVariableTable().get(name);
            idsInfo.setType(id);
     
        }
@@ -382,7 +391,7 @@ e is to keep the VariableSymbolTable**/
         {
             answer = new AssignmentStatement();
             
-            secondArg = (IdentifierInformation)IdTable.variableTable.get(scanner.getLexeme());
+            secondArg = (IdentifierInformation)IdTable.getVariableTable().get(scanner.getLexeme());
             if (secondArg.getType() == Token.ARRAY 
                     || secondArg.getType() == Token.REAL 
                     || secondArg.getType() == Token.INTEGER)
@@ -628,7 +637,7 @@ e is to keep the VariableSymbolTable**/
 
     /**
      * Term only calls factor and term_part
-     * @return 
+     * @return returns a node.
      */
     public Node term()
     {
@@ -647,7 +656,7 @@ e is to keep the VariableSymbolTable**/
     /**
      * Term part checks if currentToken is "*", "/" , "mod", or "and".
      * If so then it calls factor and term_part else just error 
-     * @return 
+     * @return returns a node
      */
     public Node term_part()
     {
@@ -691,7 +700,7 @@ e is to keep the VariableSymbolTable**/
      * chekcs if token = (
      * checks if token = number
      * if yes then just match and call expresssion
-     * @return 
+     * @return returns a node of factor 
      */
     public Node factor()
     {

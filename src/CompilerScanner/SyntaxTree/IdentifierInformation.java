@@ -11,13 +11,14 @@ package CompilerScanner.SyntaxTree;
 import CompilerScanner.ParserScan.Token;
 
 /**
+ * This is the identifier information, to check the size, type retuen and idname
  * @author Alfonso Vazquez
  */
 public class IdentifierInformation
 {
 
     /**
-     * 
+     * Constructor, keeps an IDName of type String
      * @param IDName
      */
     public IdentifierInformation(String IDName)
@@ -30,6 +31,7 @@ public class IdentifierInformation
     private String IDName;
 
     /**
+     * Getter to get type
      * @return the Type
      */
     public Token getType()
@@ -38,6 +40,7 @@ public class IdentifierInformation
     }
 
     /**
+     * Set the type of the token
      * @param Type the Type to set
      */
     public void setType(Token Type)
@@ -46,6 +49,7 @@ public class IdentifierInformation
     }
 
     /**
+     * Return the Token 
      * @return the Return
      */
     public Token getReturn()
@@ -54,6 +58,7 @@ public class IdentifierInformation
     }
 
     /**
+     * Set the return 
      * @param Return the Return to set
      */
     public void setReturn(Token Return)
@@ -62,6 +67,7 @@ public class IdentifierInformation
     }
 
     /**
+     * Return the Size
      * @return the Size
      */
     public int getSize()
@@ -69,15 +75,9 @@ public class IdentifierInformation
         return Size;
     }
 
-    /**
-     * @param Size the Size to set
-     */
-    public void setSize(int Size)
-    {
-        this.Size = Size;
-    }
 
     /**
+     * String get the name 
      * @return the IDName
      */
     public String getIDName()
@@ -86,6 +86,7 @@ public class IdentifierInformation
     }
 
     /**
+     * Return the Type 
      * @param IDName the IDName to set
      */
     public void setIDName(String IDName)
@@ -94,12 +95,14 @@ public class IdentifierInformation
     }
 
     /**
-     * 
+     * To string to print the table when needed. 
      * @return
      */
     @Override
     public String toString()
     {
-        return "IdentifierInfromation{" + "Type=" + Type + ", Return=" + Return + ", Size=" + Size + ", IDName=" + IDName + '}';
+    	String answer = "";
+    	answer = String.format("%10s%10s%10d%10s",Type,Return, Size, IDName);
+        return answer;
     }
 }

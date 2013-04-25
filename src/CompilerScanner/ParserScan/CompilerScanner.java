@@ -1,9 +1,9 @@
 package CompilerScanner.ParserScan;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.FileNotFoundException;
 import java.io.LineNumberReader;
 import java.io.PushbackReader;
 import java.util.Hashtable;
@@ -697,7 +697,7 @@ public class CompilerScanner
         //says that their is no lexeme
         return IS_NOT_A_LEXEME;
     }
-    /*
+    /**
      * Line Counter is of type int to return the number of lines of the file
      * Uses the LineNumberReader class from java
      * @return int with the line count
