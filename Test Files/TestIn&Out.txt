@@ -1,0 +1,92 @@
+////////////////////////COMPILES CORRECTLY
+
+--------------------
+THIS IS THE SYNTAX TREE
+--------------------
+Program ID
+|-- Declarations [i]
+|-- --- Declarations [z]
+|-- --- --- Declarations [x]
+|-- Compound Statement
+|-- --- IFStatement 
+|-- --- --- AssignmentStatement 
+|-- --- --- --- Value i
+|-- --- --- --- Value 4
+|-- --- --- AssignmentStatement 
+|-- --- --- --- Value i
+|-- --- --- --- Value 10
+|-- --- WhileStatement 
+|-- --- --- AssignmentStatement 
+|-- --- --- --- Value i
+|-- --- --- --- Value 21
+|-- --- AssignmentStatement 
+|-- --- --- Value i
+|-- --- --- Operations PLUS
+|-- --- --- --- Value 1
+|-- --- --- --- Value 3
+|-- --- AssignmentStatement 
+|-- --- --- Value z
+|-- --- --- Operations MINUS
+|-- --- --- --- Value 6
+|-- --- --- --- Value 4
+|-- --- AssignmentStatement 
+|-- --- --- Value i
+|-- --- --- Operations PLUS
+|-- --- --- --- Value 1
+|-- --- --- --- Value 5
+
+--------------------
+THE HASH TABLE
+--------------------
+      Type ,    Return ,    Size ,   IDName
+   INTEGER      null         0         x
+      REAL      null         0         i
+   INTEGER      null         0         z
+
+--------------------
+THE MIPS CODE//this code is placed as another file. 
+--------------------
+.data
+
+
+
+.text
+main:
+nullsw     $s0,    answer
+addi   $v0,    10
+syscall
+
+
+//////////////////////////////////ERROR OUT////////////////
+
+program Factorial;
+{The program computes 0! through 170!}
+var
+i, x : integer; {''i'' here stands for iteration}
+fact : real; {Usually factorials are so large that we can't use integer here}
+begin
+writeln ('Enter the value of the factorial');
+readln (x);
+fact:=1; {As we can't multiply by 0, our first number should be 1}
+for i:=1 to x do  {Here is our loop}
+fact :=fact*i;
+writeln(x,'! is ',fact);
+readln; {The semicolon is not obligatory here}
+end.
+
+--------------------
+THIS IS THE PARSER
+--------------------
+program
+match : [PROGRAM]
+match : [ID]
+match : [SEMI_COLON]
+declerations
+match : [VAR]
+identifier_list
+match : [ID]
+match : [ID]
+error
+///////////////NO SUCH FILE//////////////////////////////
+The File does not exist or is incorrect format
+
